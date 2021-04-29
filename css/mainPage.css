@@ -45,7 +45,7 @@
 
 .grid{
   display: grid;
-  grid-template-columns: repeat(1, 80vw);
+  grid-template-columns: repeat(1, minmax(80vw, 600px));
   grid-gap: 5rem;
 
 }
@@ -53,6 +53,7 @@
 .cell{
 
   display: flex;
+  flex-direction: column;
   font-family: hypatia-sans-pro,sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -66,13 +67,17 @@
 
 .cell img{
 
-  width: 10vw;
-  max-width: 100px;
-  min-width: 50px;
   cursor: pointer;
 
 }
 
+.logo{
+
+  width: 12vw;
+  max-width: 115px;
+  min-width: 50px;
+}
+/*
 .cell::after{
 
   content: "";
@@ -81,9 +86,42 @@
   background: red;
 
 }
-
+*/
 .aud{
 
   display: flex;
+  align-items: center;
+
+}
+
+.time{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.currentTime, .duration{
+
+  padding: 0rem 1rem;
+
+}
+
+.next, .previous{
+
+  width: 3rem;
+  transition: 0.3s ease-in-out;
+  padding: 0rem 0.5rem;
+
+}
+
+@media (hover:hover) and (pointer:fine) {
+
+  .next:hover, .previous:hover{
+
+    transform: scale(1.2);
+
+  }
 
 }

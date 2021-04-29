@@ -14,7 +14,6 @@
 
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="js/audio.js"></script>
 
 </head>
 <body>
@@ -35,22 +34,26 @@
     <div class="grid">
 
       <div class="cell">
-        <h3>Episode 1</h3>
+        <h3>Meander No. 14 - NBA Allstar Recap/ Black Griffin to the nets/ Atlanta hawks future ft. Dylan Matthews</h3>
         <div class="aud">
-          <img src="images/small.png">
-          <input type="range" min="0" step="1" onchange="">
-          <div>
-            <div class="currentTime" id="currentTime">00:00</div>
+          <audio src="podcasts/one.mp3" preload="metadata" onended="finished()"></audio>
+          <img class="logo" src="images/small.png">
+          <div class="time">
+            <div class="currentTime" id="currentTime">0:00</div>
+            <input type="range" value="0" min="0" step="1" onchange="">
             <div class="duration" id="duration">00:00</div>
           </div>
-          <img src="" alt="Next">
-          <img src="" alt="Previous">
+          <img src="images/previous.png" class="previous">
+          <img src="images/next.png" class="next">
         </div>
       </div>
+
 
     </div>
 
   </div>
+
+  <script src="js/audio.js"></script>
 
 </body>
 </html>
