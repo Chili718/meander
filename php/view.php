@@ -8,8 +8,9 @@ if (!$con) {
 else
 {
 
-  $table  = "photoshopwork";
-  $result = $con->query("SELECT * FROM $table ORDER BY id LIMIT 20");
+  $table  = "podcasts";
+  $result = $con->query("SELECT * FROM $table ORDER BY date DESC");
+  $print = "";
 
   if (mysqli_num_rows($result)!=0) {
 
@@ -17,19 +18,18 @@ else
 
       //print_r($data);
 
-      $minPath = substr_replace($data['path'], "Min", strripos($data['path'],"."),0);
-
-      $minPath = substr_replace($minPath, "/min", strripos($minPath,"/"),0);
-
-      echo "<div><h2>".$data["name"]."</h2><img class='psW' src = ".$minPath."></div>";
+      $print .= "<div class='cell'><img class='logo' src='images/small.png'><p hidden>".$data["path"]."</p><div>";
+      $print .= "<h3>".$data["title"]."</h3><p>".$data["description"]."</p></div></div>";
       //echo "<div><img src = ".$data["path"]."><h2>".$data["name"]."</h2></div>";
     }
 
   }else{
 
-    echo "<h2 class='err'>Looks like there are no images!</h2>";
+    $print = "<h2 class='err'>Looks like its the internet!!!!</h2>";
 
   }
+
+  echo $print;
 
   $con->close();
 

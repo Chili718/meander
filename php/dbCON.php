@@ -1,5 +1,5 @@
 <?php
 
-$con = @mysqli_connect("localhost", "root", "", "mysite");
+$con = @mysqli_connect("localhost", "root", "", "meander");
 
  ?>

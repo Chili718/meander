@@ -1,56 +1,182 @@
 var pods = document.querySelectorAll(".logo");
+var cells = document.querySelectorAll(".cell");
+var aud = document.getElementById("aud");
+var bar = document.getElementById("bar");
+var tme = document.getElementById("tme");
+var range = document.getElementById("slid");
+var r = document.getElementById("r");
+var l = document.getElementById("l");
 var myT;
+var interV = 500;
+var prevCell;
+var curCell;
+var seeking = false;
 
 
-pods.forEach(pod => {
+cells.forEach(cell => {
   //settimeout runs only once
-  setTimeout(showDuration(pod), 1000);
+  //setTimeout(showDuration(pod), 1000);
   //timePastAndLeft(pod);
 
-  pod.addEventListener("mouseenter", e => {
+  var inner = cell.firstElementChild;
 
-    playOrPausedHover(pod);
+  inner.addEventListener("mouseenter", e => {
 
-  });
-
-  pod.addEventListener("mouseleave", e=> {
-
-    //playOrPausedHover(pod);
-
-    pod.src = "images/small.png";
+    playOrPausedHover(inner);
 
   });
 
-  pod.addEventListener("click", e=> {
+  inner.addEventListener("mouseleave", e=> {
 
-    var test = playOrPausedClick(pod);
-    //console.log(test);
-
-    if(test == "playing")
+    if(!inner.classList.contains("coggle"))
     {
 
-      myT = setInterval(() => timePastAndLeft(pod), 500);
-      //console.log(myT);
-    }
-    else
-    {
-      //console.log(myT);
-      clearInterval(myT);
+      inner.childNodes[1].src = "images/small.png";
 
     }
 
-
   });
 
-  var range = pod.nextElementSibling.childNodes[3];
+  inner.addEventListener("click", e=> {
 
-  range.addEventListener("change", e=>{
+      curCell = inner;
 
-    seek(pod);
+      if(!aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
+      {
+        aud.pause();
+        finished();
+
+        if(prevCell)
+        {
+            prevCell.childNodes[1].src = "images/small.png";
+            prevCell.classList.toggle("coggle");
+        }
+
+        bar.childNodes[3].innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
+        aud.src = inner.childNodes[3].innerHTML;
+        aud.play();
+        aud.onloadedmetadata = function() {
+          range.max = Math.floor(aud.duration);
+        };
+        inner.classList.toggle("coggle");
+        inner.childNodes[1].src = "images/pause.png";
+        myT = setInterval(timePastAndLeft, interV);
+
+      }else if(!aud.src.includes(inner.childNodes[3].innerHTML) && aud.paused){
+
+        finished();
+
+        if(prevCell)
+        {
+            prevCell.childNodes[1].src = "images/small.png";
+            prevCell.classList.toggle("coggle");
+        }
+
+        bar.childNodes[3].innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
+        aud.src = inner.childNodes[3].innerHTML;
+        aud.play();
+        aud.onloadedmetadata = function() {
+          range.max = Math.floor(aud.duration);
+        };
+        inner.childNodes[1].src = "images/pause.png";
+        inner.classList.toggle("coggle");
+        myT = setInterval(timePastAndLeft, interV);
+
+
+      }else if(aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
+      {
+
+        aud.pause();
+        inner.childNodes[1].src = "images/play.png";
+        finished();
+
+      }
+      else if(aud.src.includes(inner.childNodes[3].innerHTML) && aud.paused)
+      {
+
+        aud.play();
+        inner.childNodes[1].src = "images/pause.png";
+        myT = setInterval(timePastAndLeft, interV);
+
+      }
+
+      if(!bar.classList.contains("reveal")){
+
+        bar.classList.toggle("reveal");
+
+      }
+
+      prevCell = inner;
+
 
   });
 
 });
+
+range.addEventListener("change", e=>{
+
+  if(aud.src.includes(".mp3") || aud.src.includes(".m4a")){
+
+    seek();
+
+  }
+
+});
+
+r.addEventListener("click", e => {
+
+  if(curCell)
+    skip("r");
+
+});
+
+l.addEventListener("click", e => {
+
+  if(curCell)
+    skip("l");
+
+});
+
+range.addEventListener('input', e => {
+
+  seeking = true;
+  //console.log("seeking");
+
+});
+
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        playOPause();
+    }
+}
+
+function playOPause(){
+
+  if(curCell){
+
+    if(aud.paused)
+    {
+
+      aud.play();
+      myT = setInterval(timePastAndLeft, interV);
+      curCell.childNodes[1].src = "images/pause.png";
+      if(!bar.classList.contains("reveal")){
+
+        bar.classList.toggle("reveal");
+
+      }
+
+    }
+    else if(!aud.paused)
+    {
+      aud.pause();
+      finished();
+      curCell.childNodes[1].src = "images/play.png";
+    }
+
+  }
+
+}
 
 function convertTime(seconds){
 
@@ -80,83 +206,53 @@ function convertTime(seconds){
 
 }
 
-function timePastAndLeft(aud){
+function timePastAndLeft(){
 
-  var p = Math.floor(aud.previousElementSibling.currentTime);
+  var p = Math.floor(aud.currentTime);
 
-  var l = Math.floor(aud.previousElementSibling.duration - aud.previousElementSibling.currentTime);
+  var l = Math.floor(aud.duration - aud.currentTime);
 
-  aud.nextElementSibling.childNodes[3].value = p;
+  if(seeking == false){
+
+    range.value = p;
+    //console.log("not seeking");
+
+  }
 
   p = convertTime(p);
 
   l = convertTime(l);
 
-  aud.nextElementSibling.childNodes[1].textContent = p;
+  tme.firstElementChild.textContent = p;
 
-  aud.nextElementSibling.childNodes[5].textContent = l;
+  tme.lastElementChild.textContent = l;
 
-  console.log("mid");
-
-}
-
-function showDuration(aud){
-
-  aud.previousElementSibling.onloadedmetadata = function(){
-
-    var d = Math.floor(aud.previousElementSibling.duration);
-
-    //console.log(aud.nextElementSibling.childNodes[5]);
-
-    aud.nextElementSibling.childNodes[3].setAttribute("max", d);
-
-    aud.nextElementSibling.childNodes[5].textContent = convertTime(d);
-
-  }
+  //console.log(range.value);
 
 }
 
-function playOrPausedHover(aud){
+function playOrPausedHover(pos){
   //white space is a considered a node so we must use previouselementsibling instead of previous sibling
   //which ignores such thing
   //console.log(aud.previousElementSibling);
 
-  if(!aud.previousElementSibling.paused){
+  if(!aud.paused && aud.src.includes(pos.childNodes[3].innerHTML)){
 
-    aud.src = "images/pause.png";
+    pos.childNodes[1].src = "images/pause.png";
 
   }else{
 
-    aud.src = "images/play.png";
+    pos.childNodes[1].src = "images/play.png";
 
   }
 
 }
 
-function playOrPausedClick(aud){
+function seek(){
 
-  if(aud.previousElementSibling.paused){
-
-    aud.previousElementSibling.play();
-    aud.src = "images/pause.png";
-    return "playing";
-
-  }else{
-
-    aud.previousElementSibling.pause();
-    aud.src = "images/play.png";
-    return "paused";
-
-  }
-
-}
-
-function seek(aud){
-  //clearInterval(myT);
-  aud.previousElementSibling.currentTime = aud.nextElementSibling.childNodes[3].value;
-  //myT = setInterval(() => timePastAndLeft(aud), 500);
-  timePastAndLeft(aud);
-  aud.previousElementSibling.play();
+  aud.currentTime = range.value;
+  timePastAndLeft();
+  seeking = false;
 
 }
 
@@ -164,5 +260,26 @@ function finished(){
 
 
   clearInterval(myT);
+  timePastAndLeft();
+  curCell.childNodes[1].src = "images/play.png";
+
+}
+
+function skip(dir){
+
+  finished();
+  if(dir == "r")
+  {
+
+    aud.currentTime += 30;
+
+  }
+  else if(dir == "l"){
+
+    aud.currentTime -= 30;
+
+  }
+  aud.play();
+  myT = setInterval(timePastAndLeft, interV);
 
 }
