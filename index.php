@@ -20,12 +20,8 @@
 </head>
 <body>
 
-  <div class="home">
-
-    <img class="homeImg" src="images/Meander.png">
-
-
     <div class="options">
+      <img class="homeImg" src="images/Meander.png">
       <h1>Podcast Episodes</h1>
       <div class="toptions">
         <input type="text" id="search" class="srch" onkeyup="" placeholder="Search for...">
@@ -40,7 +36,16 @@
     <div class="grid">
 
 
+
+
       <div class='cell'>
+
+        <div class="cellYou">
+          <p>YouTube</p>
+          <img src="images/youVid.png">
+        </div>
+
+        <iframe src="https://www.youtube.com/embed/NBVR69i1O1A" class="cellVid hideVid" allowfullscreen></iframe>
 
         <div class="innerCell">
 
@@ -49,14 +54,22 @@
           <p hidden>podcasts/one.mp3</p>
           <div>
             <h3>This is the Title</h3>
+            <h3 class="dte">Date</h3>
             <p>This is the description</p>
           </div>
 
         </div>
-        <h3 class="dte">Date</h3>
+
       </div>
 
       <div class='cell'>
+
+        <div class="cellYou">
+          <p>YouTube</p>
+          <img src="images/youVid.png">
+        </div>
+
+        <iframe src="https://www.youtube.com/embed/NBVR69i1O1A" class="cellVid hideVid" allowfullscreen></iframe>
 
         <div class="innerCell">
 
@@ -65,11 +78,12 @@
           <p hidden>podcasts/two.mp3</p>
           <div>
             <h3>This is the Title</h3>
+            <h3 class="dte">Date</h3>
             <p>This is the description</p>
           </div>
 
         </div>
-        <h3 class="dte">Date</h3>
+
       </div>
       <?php
 
@@ -120,8 +134,6 @@
     <!-------------------------------------------->
     <!---End of Audio Bar------>
     <!-------------------------------------------->
-
-  </div>
 
   <script src="js/audio.js"></script>
   <script src="js/burger.js"></script>

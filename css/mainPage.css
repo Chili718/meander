@@ -5,12 +5,9 @@
 
 }
 
-.home{
+body{
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 5vw;
+  overflow-x: hidden;
 
 }
 /*
@@ -70,7 +67,7 @@ Main image and search options
 
   display: flex;
   flex-direction: column;
-  width: 55vw;
+  width: 100vw;
   justify-content: space-between;
   padding-bottom: 40px;
   font-family: hypatia-sans-pro,sans-serif;
@@ -128,20 +125,32 @@ Podcast Grid and Cells
 
 .grid{
   display: grid;
-  grid-template-columns: repeat(1, minmax(75vw, 600px));
+  grid-template-columns: repeat(1, minmax(250px, 1000px));
   grid-gap: 4rem;
   padding-bottom: calc(6vh + 0.3rem);
+  justify-content: center;
+  position: relative;
+  margin: 0vw 5vw 0vw 5vw;
 
 }
 
 .cell{
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   background-color: white;
   font-family: hypatia-sans-pro,sans-serif;
   font-weight: 600;
   font-style: normal;
+  position: relative;
+  /*transition: 0.4s ease-in-out;*/
+
+}
+
+.cellPad{
+
+ margin-top: 50%;
 
 }
 
@@ -155,14 +164,13 @@ Podcast Grid and Cells
   width: 96%;
   cursor: pointer;
   background-color: white;
-  transition: 0.3s ease-in-out;
+  /*transition: 0.3s ease-in-out;*/
 
 }
 
 .dte{
 
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  font-size: 0.9rem;
 
 }
 
@@ -187,23 +195,67 @@ Podcast Grid and Cells
 
 .innerCell h3{
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
 
 }
 
-.cellWall{
+.cellYou{
 
-  width: 3px;
-  height: 100%;
-  background-color: black;
-  padding: 0rem 0.5rem;
+  padding: 0.2rem;
+  border: solid black 1px;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  top: -27%;
+  right: 0.2%;
+
+
+}
+.cellYou img{
+
+  width: 15px;
+  margin-left: 0.6rem;
+  margin-right: 0.2rem;
+
+}
+
+.cellYou:hover{
+
+  background-color: #dedede;
+
+}
+
+.cellVid{
+
+  width: 87%;
+  position: absolute;
+  left: 0;
+  height: 450%;
+  bottom: -336%;
+  transition: bottom 0.8s ease-in-out;
+
+}
+
+.showVid{
+
+    bottom: 100%;
+
+}
+
+.hideVid{
+
+  display: none;
+  z-index: -2;
+
 }
 
 .logo{
 
   width: 12vw;
   max-width: 75px;
-  min-width: 35px;
+  min-width: 55px;
   padding-right: 1.5rem;
 }
 /*
@@ -266,7 +318,7 @@ input[type=range]{
 .slider {
   -webkit-appearance: none;
   width: 35vw;
-  height: 8px;
+  height: 5px;
   border-radius: 5px;
   background: #d3d3d3;
   outline: none;
@@ -277,8 +329,8 @@ input[type=range]{
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 19px;
-  height: 19px;
+  width: 15px;
+  height: 15px;
   background-image: url('../images/slider.png');
   background-position: center;
   cursor: pointer;

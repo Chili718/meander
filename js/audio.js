@@ -18,7 +18,7 @@ cells.forEach(cell => {
   //setTimeout(showDuration(pod), 1000);
   //timePastAndLeft(pod);
 
-  var inner = cell.firstElementChild;
+  var inner = cell.childNodes[5];
 
   inner.addEventListener("mouseenter", e => {
 
@@ -139,14 +139,25 @@ l.addEventListener("click", e => {
 
 range.addEventListener('input', e => {
 
-  seeking = true;
+  if(curCell)
+  {
+
+    seeking = true;
+
+  }
   //console.log("seeking");
 
 });
-
+//play or pause with the spacebar(32)
 document.body.onkeyup = function(e){
-    if(e.keyCode == 32){
+      if(e.keyCode == 32){
         playOPause();
+    }
+}
+//for preventing the space bar from taking you to the bottom of the page
+document.body.onkeydown = function(e){
+    if(e.keyCode == 32){
+        e.preventDefault();
     }
 }
 

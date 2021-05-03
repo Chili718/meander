@@ -1,5 +1,35 @@
 const ham = document.querySelector(".burger");
 const bars = document.querySelector(".audioBar");
+const yous = document.querySelectorAll(".cellYou");
+var temp;
+
+yous.forEach(you => {
+
+  you.addEventListener("click", e => {
+
+    //this is the cell
+    you.parentNode.classList.toggle("cellPad");
+
+    //this is the iframe in the cell
+    you.nextElementSibling.classList.toggle("hideVid");
+
+    you.parentNode.scrollIntoView(false,{behavior: "smooth"});
+
+    you.nextElementSibling.classList.toggle("showVid");
+
+    //I did this after fooling around with the api for the youtube iframe api
+    //to which I concluded that it could not accimplish what I wanted it to
+    //this is a super janky way to pause the video on close
+    if(!you.nextElementSibling.classList.contains("showVid")){
+      temp = you.nextElementSibling.src;
+      you.nextElementSibling.src = "";
+      you.nextElementSibling.src = temp;
+
+    }
+
+  });
+
+});
 
 ham.addEventListener("click", e => {
 
