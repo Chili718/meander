@@ -174,18 +174,6 @@ Podcast Grid and Cells
 
 }
 
-.coggle{
-
-  background-color: #dedede;
-
-}
-
-.innerCell:hover{
-
-  background-color: #dedede;
-
-}
-
 .cell img{
 
   cursor: pointer;
@@ -221,12 +209,6 @@ Podcast Grid and Cells
 
 }
 
-.cellYou:hover{
-
-  background-color: #dedede;
-
-}
-
 .cellVid{
 
   width: 87%;
@@ -257,6 +239,12 @@ Podcast Grid and Cells
   max-width: 75px;
   min-width: 55px;
   padding-right: 1.5rem;
+}
+
+.coggle{
+
+  background-color: #dedede;
+
 }
 /*
 .cell::after{
@@ -306,6 +294,7 @@ Footer Audio Bar
   display: flex;
   padding-bottom: 0.8rem;
   align-items: center;
+  position: relative;
 
 }
 
@@ -323,7 +312,6 @@ input[type=range]{
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
   transition: opacity .2s;
 }
 
@@ -333,7 +321,7 @@ input[type=range]{
   height: 15px;
   background-image: url('../images/slider.png');
   background-position: center;
-  cursor: pointer;
+  cursor: ew-resize;
 }
 
 .reveal{
@@ -414,6 +402,61 @@ input[type=range]{
   cursor: pointer;
   padding: 0rem 0.5rem;
 
+}
+
+.pBar{
+
+  position: absolute;
+  padding-bottom: 0.6rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+}
+
+.volum{
+
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 15vw;
+  border: solid 2px black;
+  top: 0;
+  right: 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  margin-top: 0.4rem;
+  margin-right: 1rem;
+  max-width: 215px;
+  min-width: 100px;
+
+}
+
+.volum img{
+
+  width: 1.5rem;
+  cursor: pointer;
+
+}
+
+.volSlid{
+
+  width: 100%;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  height: 5px;
+  margin-right: 0.4rem;
+  transition: opacity .2s;
+
+}
+
+.volSlid::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 0.5rem;
+  cursor: ew-resize;
+  background: #434343;
 
 }
 
@@ -440,8 +483,26 @@ Media Queries
 
   }
 
-  .slider:hover {
+  .slider:hover, .volSlid:hover{
     opacity: 1;
+  }
+
+  .pBar:hover{
+
+    transform: scale(1.1);
+
+  }
+
+  .innerCell:hover{
+
+    background-color: #dedede;
+
+  }
+
+  .cellYou:hover{
+
+    background-color: #dedede;
+
   }
 
 }

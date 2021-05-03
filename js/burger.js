@@ -10,6 +10,8 @@ yous.forEach(you => {
     //this is the cell
     you.parentNode.classList.toggle("cellPad");
 
+    you.classList.toggle("coggle");
+
     //this is the iframe in the cell
     you.nextElementSibling.classList.toggle("hideVid");
 

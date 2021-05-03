@@ -6,11 +6,14 @@ var tme = document.getElementById("tme");
 var range = document.getElementById("slid");
 var r = document.getElementById("r");
 var l = document.getElementById("l");
+var pBar = document.getElementById("pBar");
+var volumeBar = document.getElementById("vol");
 var myT;
 var interV = 500;
 var prevCell;
 var curCell;
 var seeking = false;
+var prevVol = 0;
 
 
 cells.forEach(cell => {
@@ -148,6 +151,51 @@ range.addEventListener('input', e => {
   //console.log("seeking");
 
 });
+
+volumeBar.addEventListener("change", e=>{
+
+  //console.log(volumeBar.value);
+  aud.volume = volumeBar.value;
+
+  if(volumeBar.value == 0.0){
+
+    volumeBar.nextElementSibling.src = "images/noSound.png";
+
+  }else if(volumeBar.value > 0.0){
+
+    if(!volumeBar.nextElementSibling.src.includes("sound.png")){
+
+      volumeBar.nextElementSibling.src = "images/sound.png";
+
+    }
+
+    prevVol = volumeBar.value;
+
+  }
+
+});
+
+volumeBar.nextElementSibling.addEventListener("click", e=>{
+
+  if(volumeBar.nextElementSibling.src.includes("sound.png")){
+
+    //prevVol = volumeBar.value;
+    volumeBar.value = 0.0;
+    volumeBar.nextElementSibling.src = "images/noSound.png";
+    aud.volume = volumeBar.value;
+
+  }
+  else if(volumeBar.nextElementSibling.src.includes("noSound.png"))
+  {
+
+    volumeBar.value = prevVol;
+    volumeBar.nextElementSibling.src = "images/sound.png";
+    aud.volume = volumeBar.value;
+
+  }
+
+});
+
 //play or pause with the spacebar(32)
 document.body.onkeyup = function(e){
       if(e.keyCode == 32){

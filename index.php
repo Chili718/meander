@@ -104,6 +104,8 @@
 
       <div class="tb">
 
+        <img src="images/barPlay.png" id="pBar" class="pBar">
+
         <img src="images/previous.png" class="previous">
 
         <img src="images/secondsBack.png" class="prevSec" id="l">
@@ -129,6 +131,11 @@
     <div class="burger">
       <div class="line1"></div>
       <div class="line2"></div>
+    </div>
+
+    <div class="volum">
+      <input type="range" value="1" min="0" max="1" step="0.01" class="volSlid" id="vol">
+      <img src="images/sound.png">
     </div>
 
     <!-------------------------------------------->
