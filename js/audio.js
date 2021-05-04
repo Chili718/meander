@@ -153,13 +153,36 @@ range.addEventListener('input', e => {
   {
 
     seeking = true;
-    //console.log(range.value);
+    timePastAndLeft();
 
   }
   //console.log("seeking");
 
 });
 
+volumeBar.addEventListener("input", e=>{
+
+  //console.log(volumeBar.value);
+  aud.volume = volumeBar.value;
+
+  if(volumeBar.value == 0.0){
+
+    volumeBar.nextElementSibling.src = "images/noSound.png";
+
+  }else if(volumeBar.value > 0.0){
+
+    if(!volumeBar.nextElementSibling.src.includes("sound.png")){
+
+      volumeBar.nextElementSibling.src = "images/sound.png";
+
+    }
+
+    prevVol = volumeBar.value;
+
+  }
+
+});
+/*
 volumeBar.addEventListener("change", e=>{
 
   //console.log(volumeBar.value);
@@ -182,7 +205,7 @@ volumeBar.addEventListener("change", e=>{
   }
 
 });
-
+*/
 volumeBar.nextElementSibling.addEventListener("click", e=>{
 
   if(volumeBar.nextElementSibling.src.includes("sound.png")){
@@ -351,6 +374,7 @@ function finished(){
   clearInterval(myT);
   timePastAndLeft();
   curCell.childNodes[1].src = "images/play.png";
+  pBar.src = "images/barPlay.png";
 
 }
 
