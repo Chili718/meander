@@ -8,12 +8,13 @@ var r = document.getElementById("r");
 var l = document.getElementById("l");
 var pBar = document.getElementById("pBar");
 var volumeBar = document.getElementById("vol");
+var bur = document.querySelector(".burger");
 var myT;
 var interV = 500;
 var prevCell;
 var curCell;
 var seeking = false;
-var prevVol = 0;
+var prevVol = 1.0;
 
 
 cells.forEach(cell => {
@@ -63,6 +64,7 @@ cells.forEach(cell => {
         };
         inner.classList.toggle("coggle");
         inner.childNodes[1].src = "images/pause.png";
+        pBar.src = "images/barPause.png";
         myT = setInterval(timePastAndLeft, interV);
 
       }else if(!aud.src.includes(inner.childNodes[3].innerHTML) && aud.paused){
@@ -81,6 +83,7 @@ cells.forEach(cell => {
         aud.onloadedmetadata = function() {
           range.max = Math.floor(aud.duration);
         };
+        pBar.src = "images/barPause.png";
         inner.childNodes[1].src = "images/pause.png";
         inner.classList.toggle("coggle");
         myT = setInterval(timePastAndLeft, interV);
@@ -91,6 +94,7 @@ cells.forEach(cell => {
 
         aud.pause();
         inner.childNodes[1].src = "images/play.png";
+        pBar.src = "images/barPlay.png";
         finished();
 
       }
@@ -98,6 +102,7 @@ cells.forEach(cell => {
       {
 
         aud.play();
+        pBar.src = "images/barPause.png";
         inner.childNodes[1].src = "images/pause.png";
         myT = setInterval(timePastAndLeft, interV);
 
@@ -106,6 +111,8 @@ cells.forEach(cell => {
       if(!bar.classList.contains("reveal")){
 
         bar.classList.toggle("reveal");
+        volumeBar.parentNode.classList.toggle("reveal");
+        bur.classList.toggle("ex");
 
       }
 
@@ -146,6 +153,7 @@ range.addEventListener('input', e => {
   {
 
     seeking = true;
+    //console.log(range.value);
 
   }
   //console.log("seeking");
@@ -196,6 +204,12 @@ volumeBar.nextElementSibling.addEventListener("click", e=>{
 
 });
 
+pBar.addEventListener("click", e => {
+
+  playOPause();
+
+});
+
 //play or pause with the spacebar(32)
 document.body.onkeyup = function(e){
       if(e.keyCode == 32){
@@ -219,6 +233,7 @@ function playOPause(){
       aud.play();
       myT = setInterval(timePastAndLeft, interV);
       curCell.childNodes[1].src = "images/pause.png";
+      pBar.src = "images/barPause.png";
       if(!bar.classList.contains("reveal")){
 
         bar.classList.toggle("reveal");
@@ -231,6 +246,7 @@ function playOPause(){
       aud.pause();
       finished();
       curCell.childNodes[1].src = "images/play.png";
+      pBar.src = "images/barPlay.png";
     }
 
   }
@@ -267,26 +283,40 @@ function convertTime(seconds){
 
 function timePastAndLeft(){
 
-  var p = Math.floor(aud.currentTime);
-
-  var l = Math.floor(aud.duration - aud.currentTime);
-
   if(seeking == false){
+
+    var p = Math.floor(aud.currentTime);
+
+    var l = Math.floor(aud.duration - aud.currentTime);
 
     range.value = p;
     //console.log("not seeking");
 
+    p = convertTime(p);
+
+    l = convertTime(l);
+
+    tme.firstElementChild.textContent = p;
+
+    tme.lastElementChild.textContent = l;
+
+    //console.log(range.value);
+
+  }else if(seeking == true){
+
+    var p = Math.floor(range.value);
+
+    var l = Math.floor(aud.duration - p);
+
+    p = convertTime(p);
+
+    l = convertTime(l);
+
+    tme.firstElementChild.textContent = p;
+
+    tme.lastElementChild.textContent = l;
+
   }
-
-  p = convertTime(p);
-
-  l = convertTime(l);
-
-  tme.firstElementChild.textContent = p;
-
-  tme.lastElementChild.textContent = l;
-
-  //console.log(range.value);
 
 }
 

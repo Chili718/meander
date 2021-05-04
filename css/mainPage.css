@@ -206,6 +206,13 @@ Podcast Grid and Cells
   width: 15px;
   margin-left: 0.6rem;
   margin-right: 0.2rem;
+  transition: 0.3s ease-in-out;
+
+}
+
+.youDown{
+
+  transform: rotate(180deg);
 
 }
 
@@ -279,6 +286,7 @@ Footer Audio Bar
   transform: translateX(101vw);
   transition: 1s ease-in-out;
   border: solid black 2px;
+  overflow: hidden;
 
 
 }
@@ -326,7 +334,7 @@ input[type=range]{
 
 .reveal{
 
-  transform: translate(0vw);
+  transform: translate(0vw) !important;
 
 }
 
@@ -407,18 +415,27 @@ input[type=range]{
 .pBar{
 
   position: absolute;
-  padding-bottom: 0.6rem;
+  bottom: 0.4rem;
+  left: -4rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;
 
 }
+
+/*
+
+///////////////////////////////////////////////////////////
+Volume Bar
+///////////////////////////////////////////////////////////
+
+*/
 
 .volum{
 
   display: flex;
   align-items: center;
   position: fixed;
-  width: 15vw;
+  width: 24vw;
   border: solid 2px black;
   top: 0;
   right: 0;
@@ -428,6 +445,9 @@ input[type=range]{
   margin-right: 1rem;
   max-width: 215px;
   min-width: 100px;
+  transition: 1s ease-in-out;
+  transform: translateX(32vw);
+  background-color: white;
 
 }
 
@@ -459,6 +479,21 @@ input[type=range]{
   background: #434343;
 
 }
+
+/*
+
+///////////////////////////////////////////////////////////
+Social Media Links
+///////////////////////////////////////////////////////////
+
+*/
+
+.socLinks{
+
+  
+
+}
+
 
 /*
 

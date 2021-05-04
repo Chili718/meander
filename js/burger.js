@@ -1,6 +1,7 @@
 const ham = document.querySelector(".burger");
 const bars = document.querySelector(".audioBar");
 const yous = document.querySelectorAll(".cellYou");
+const snd = document.getElementById("volum");
 var temp;
 
 yous.forEach(you => {
@@ -18,6 +19,8 @@ yous.forEach(you => {
     you.parentNode.scrollIntoView(false,{behavior: "smooth"});
 
     you.nextElementSibling.classList.toggle("showVid");
+
+    you.lastElementChild.classList.toggle("youDown");
 
     //I did this after fooling around with the api for the youtube iframe api
     //to which I concluded that it could not accimplish what I wanted it to
@@ -37,6 +40,7 @@ ham.addEventListener("click", e => {
 
   ham.classList.toggle("ex");
   bars.classList.toggle("reveal");
+  snd.classList.toggle("reveal");
 
 
 });

@@ -20,6 +20,10 @@
 </head>
 <body>
 
+    <div class="socLinks">
+
+    </div>
+
     <div class="options">
       <img class="homeImg" src="images/Meander.png">
       <h1>Podcast Episodes</h1>
@@ -34,9 +38,6 @@
 
 
     <div class="grid">
-
-
-
 
       <div class='cell'>
 
@@ -66,7 +67,7 @@
 
         <div class="cellYou">
           <p>YouTube</p>
-          <img src="images/youVid.png">
+          <img src="images/youVid.png" >
         </div>
 
         <iframe src="https://www.youtube.com/embed/NBVR69i1O1A" class="cellVid hideVid" allowfullscreen></iframe>
@@ -133,7 +134,7 @@
       <div class="line2"></div>
     </div>
 
-    <div class="volum">
+    <div class="volum" id="volum">
       <input type="range" value="1" min="0" max="1" step="0.01" class="volSlid" id="vol">
       <img src="images/sound.png">
     </div>
