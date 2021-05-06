@@ -184,26 +184,16 @@ volumeBar.addEventListener("input", e=>{
 });
 /*
 volumeBar.addEventListener("change", e=>{
-
   //console.log(volumeBar.value);
   aud.volume = volumeBar.value;
-
   if(volumeBar.value == 0.0){
-
     volumeBar.nextElementSibling.src = "images/noSound.png";
-
   }else if(volumeBar.value > 0.0){
-
     if(!volumeBar.nextElementSibling.src.includes("sound.png")){
-
       volumeBar.nextElementSibling.src = "images/sound.png";
-
     }
-
     prevVol = volumeBar.value;
-
   }
-
 });
 */
 volumeBar.nextElementSibling.addEventListener("click", e=>{

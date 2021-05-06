@@ -38,57 +38,34 @@
 
 
     <div class="grid">
-
+      <!--
       <div class='cell'>
 
-        <div class="cellYou">
+        <div class='cellYou'>
           <p>YouTube</p>
-          <img src="images/youVid.png">
+          <img src='images/youVid.png'>
         </div>
 
-        <iframe src="https://www.youtube.com/embed/NBVR69i1O1A" class="cellVid hideVid" allowfullscreen></iframe>
+        <iframe src='".$src."' class='cellVid hideVid' allowfullscreen></iframe>
 
-        <div class="innerCell">
+        <div class='innerCell'>
 
           <img class='logo' src='images/small.png'>
 
           <p hidden>podcasts/one.mp3</p>
           <div>
-            <h3>This is the Title</h3>
-            <h3 class="dte">Date</h3>
-            <p>This is the description</p>
+            <h3>Final NFL Chat of the Season, Goat Talk, NBA power rankings (2/15/21), HOT TAKES Meander No.11</h3>
+            <h3 class='dte'>23 April, 2021</h3>
+            <p>The guy are finally back together again and for the 10th episode special. We start things off with today Super Bowl LV predictions, then we move on to recap the NBA, talking about the top 5 power ranking teams from this week. Finally, we have a fun one for the viewers, a little bit of would you rather with the gang. sit back, and enjoy.</p>
           </div>
 
         </div>
 
       </div>
-
-      <div class='cell'>
-
-        <div class="cellYou">
-          <p>YouTube</p>
-          <img src="images/youVid.png" >
-        </div>
-
-        <iframe src="https://www.youtube.com/embed/NBVR69i1O1A" class="cellVid hideVid" allowfullscreen></iframe>
-
-        <div class="innerCell">
-
-          <img class='logo' src='images/small.png'>
-
-          <p hidden>podcasts/two.mp3</p>
-          <div>
-            <h3>This is the Title</h3>
-            <h3 class="dte">Date</h3>
-            <p>This is the description</p>
-          </div>
-
-        </div>
-
-      </div>
+    -->
       <?php
 
-      //require "php/view.php";
+        require "php/view.php";
 
        ?>
 

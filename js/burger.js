@@ -8,27 +8,31 @@ yous.forEach(you => {
 
   you.addEventListener("click", e => {
 
-    //this is the cell
-    you.parentNode.classList.toggle("cellPad");
+    if(you.nextElementSibling.src != "https://www.youtube.com/embed/"){
 
-    you.classList.toggle("coggle");
+      //this is the cell
+      you.parentNode.classList.toggle("cellPad");
 
-    //this is the iframe in the cell
-    you.nextElementSibling.classList.toggle("hideVid");
+      you.classList.toggle("coggle");
 
-    you.parentNode.scrollIntoView(false,{behavior: "smooth"});
+      //this is the iframe in the cell
+      you.nextElementSibling.classList.toggle("hideVid");
 
-    you.nextElementSibling.classList.toggle("showVid");
+      you.parentNode.scrollIntoView(false,{behavior: "smooth"});
 
-    you.lastElementChild.classList.toggle("youDown");
+      you.nextElementSibling.classList.toggle("showVid");
 
-    //I did this after fooling around with the api for the youtube iframe api
-    //to which I concluded that it could not accimplish what I wanted it to
-    //this is a super janky way to pause the video on close
-    if(!you.nextElementSibling.classList.contains("showVid")){
-      temp = you.nextElementSibling.src;
-      you.nextElementSibling.src = "";
-      you.nextElementSibling.src = temp;
+      you.lastElementChild.classList.toggle("youDown");
+
+      //I did this after fooling around with the api for the youtube iframe api
+      //to which I concluded that it could not accimplish what I wanted it to
+      //this is a super janky way to pause the video on close
+      if(!you.nextElementSibling.classList.contains("showVid")){
+        temp = you.nextElementSibling.src;
+        you.nextElementSibling.src = "";
+        you.nextElementSibling.src = temp;
+
+      }
 
     }
 

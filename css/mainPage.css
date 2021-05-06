@@ -130,20 +130,21 @@ Podcast Grid and Cells
   padding-bottom: calc(6vh + 0.3rem);
   justify-content: center;
   position: relative;
-  margin: 0vw 5vw 0vw 5vw;
+  margin: 0vw 5vw 5vw 5vw;
 
 }
 
+/*111px seems like a good height*/
 .cell{
 
-  display: flex;
-  flex-direction: column;
   align-items: center;
   background-color: white;
   font-family: hypatia-sans-pro,sans-serif;
   font-weight: 600;
   font-style: normal;
   position: relative;
+  height: 111px;
+  cursor: pointer;
   /*transition: 0.4s ease-in-out;*/
 
 }
@@ -161,9 +162,7 @@ Podcast Grid and Cells
   padding: 1rem;
   position: relative;
   border: 2px black solid;
-  width: 96%;
-  cursor: pointer;
-  background-color: white;
+  width: 100%;
   /*transition: 0.3s ease-in-out;*/
 
 }
@@ -224,6 +223,7 @@ Podcast Grid and Cells
   height: 450%;
   bottom: -336%;
   transition: bottom 0.8s ease-in-out;
+  max-height: 500px;
 
 }
 
@@ -490,7 +490,7 @@ Social Media Links
 
 .socLinks{
 
-  
+
 
 }
 
