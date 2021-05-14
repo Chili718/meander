@@ -34,10 +34,10 @@ else
           <img class='logo' src='images/small.png'>
 
           <p hidden>".$data["path"]."</p>
-          <div>
-            <h3>".$data["title"]."</h3>
+          <div class='info'>
+            <h3 class='title'>".$data["title"]."</h3>
             <h3 class='dte'>".$data["d"]."</h3>
-            <p>".$data["description"]."</p>
+            <p class='description'>".$data["description"]."</p>
           </div>
 
         </div>

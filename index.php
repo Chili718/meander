@@ -38,31 +38,7 @@
 
 
     <div class="grid">
-      <!--
-      <div class='cell'>
 
-        <div class='cellYou'>
-          <p>YouTube</p>
-          <img src='images/youVid.png'>
-        </div>
-
-        <iframe src='".$src."' class='cellVid hideVid' allowfullscreen></iframe>
-
-        <div class='innerCell'>
-
-          <img class='logo' src='images/small.png'>
-
-          <p hidden>podcasts/one.mp3</p>
-          <div>
-            <h3>Final NFL Chat of the Season, Goat Talk, NBA power rankings (2/15/21), HOT TAKES Meander No.11</h3>
-            <h3 class='dte'>23 April, 2021</h3>
-            <p>The guy are finally back together again and for the 10th episode special. We start things off with today Super Bowl LV predictions, then we move on to recap the NBA, talking about the top 5 power ranking teams from this week. Finally, we have a fun one for the viewers, a little bit of would you rather with the gang. sit back, and enjoy.</p>
-          </div>
-
-        </div>
-
-      </div>
-    -->
       <?php
 
         require "php/view.php";
