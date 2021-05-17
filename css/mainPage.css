@@ -310,7 +310,6 @@ Footer Audio Bar
 
 .audioBar h3{
 
-  transform: translateY(0.5rem);
   font-size: 1rem;
 
 }
@@ -325,37 +324,43 @@ Scrolling Text In Audio Bar
 
 .scroll-left {
  height: 1.4rem;
- width: 50px;
+ width: 50vw;
  overflow: hidden;
  background: yellow;
 }
 
 .scroll-left h3 {
- position: absolute;
- width: 100%;
- height: 100%;
- margin: 0;
- line-height: 50px;
- text-align: center;
- /* Starting position */
- transform:translateX(100%);
+
+  text-align: left;
  /* Apply animation to this element */
- animation: scroll-left 15s linear infinite;
+ position: relative;
+
+}
+
+.scroll-play{
+
+  animation: scroll-left 40s linear infinite;
+
 }
 /* Move it (define the animation) */
 @keyframes scroll-left {
-   0%   {
-   transform: translateX(100%);
+   25%   {
+   transform: translateX(0%);
    }
-   100% {
-   transform: translateX(-100%);
+   50% {
+   transform: translateX(-50%);
+   }
+   75%{
+     transform: translateX(-50%);
+   }
+   100%{
+     transform: translateX(0%);
    }
 }
 
 .tb{
 
   display: flex;
-  padding-bottom: 0.8rem;
   align-items: center;
   position: relative;
 
@@ -470,7 +475,7 @@ input[type=range]{
 .pBar{
 
   position: absolute;
-  bottom: 0.4rem;
+  bottom: 0.0rem;
   left: -4rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;

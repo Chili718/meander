@@ -54,7 +54,9 @@
 
       <audio src="" id="aud" preload="metadata" onended="finished()"></audio>
 
-      <h3>Now Playing - 'Nothing'</h3>
+      <div class="scroll-left">
+        <h3>Now Playing - 'Nothing'</h3>
+      </div>
 
       <div class="tb">
 

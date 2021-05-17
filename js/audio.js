@@ -6,7 +6,7 @@ var cells = document.querySelectorAll(".cell");
 var aud = document.getElementById("aud");
 //the audio bar and all of its contents
 var bar = document.getElementById("bar");
-//time container holding the time remaining, time past, and range bar
+//time div holding the time remaining, time past, and range bar
 var tme = document.getElementById("tme");
 //slider showing the progress of the song
 var range = document.getElementById("slid");
@@ -40,7 +40,6 @@ var seeking = false;
 //they were last on before muting
 var prevVol = 1.0;
 
-
 cells.forEach(cell => {
   //settimeout runs only once
   //setTimeout(showDuration(pod), 1000);
@@ -64,7 +63,9 @@ cells.forEach(cell => {
     }
 
   });
-
+  //another way to do this could have been getting the target click on
+  //which would be the innercell and getting / setting everything from
+  //there... maybe in the future
   inner.addEventListener("click", e=> {
 
       curCell = inner;
@@ -80,7 +81,7 @@ cells.forEach(cell => {
             prevCell.classList.toggle("coggle");
         }
 
-        bar.childNodes[3].innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
+        bar.childNodes[3].firstElementChild.innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
         aud.src = inner.childNodes[3].innerHTML;
         aud.play();
         aud.onloadedmetadata = function() {
@@ -101,7 +102,7 @@ cells.forEach(cell => {
             prevCell.classList.toggle("coggle");
         }
 
-        bar.childNodes[3].innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
+        bar.childNodes[3].firstElementChild.innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
         aud.src = inner.childNodes[3].innerHTML;
         aud.play();
         aud.onloadedmetadata = function() {
