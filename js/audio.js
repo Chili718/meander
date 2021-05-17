@@ -1,19 +1,43 @@
+//selector for all of the cells images
 var pods = document.querySelectorAll(".logo");
+//podcast cells containing all of the info and such
 var cells = document.querySelectorAll(".cell");
+//audio that is playing on the page
 var aud = document.getElementById("aud");
+//the audio bar and all of its contents
 var bar = document.getElementById("bar");
+//time container holding the time remaining, time past, and range bar
 var tme = document.getElementById("tme");
+//slider showing the progress of the song
 var range = document.getElementById("slid");
+
+//next podcast
 var r = document.getElementById("r");
+//previous podcast
 var l = document.getElementById("l");
+
+//play button for the song bar
 var pBar = document.getElementById("pBar");
+//volume slider at top right
 var volumeBar = document.getElementById("vol");
+//mobile burger menu
 var bur = document.querySelector(".burger");
+
+//the saved interval var so I can stop the looping code
+//when the audio is paused
 var myT;
+//time interval for updating the time past and left
 var interV = 500;
+
+//
 var prevCell;
 var curCell;
+
+//if the user is dragging the progress bar for the song
 var seeking = false;
+
+//adds functionality for keeping the users time
+//they were last on before muting
 var prevVol = 1.0;
 
 
@@ -370,7 +394,7 @@ function finished(){
 
 function skip(dir){
 
-  finished();
+  //finished();
   if(dir == "r")
   {
 
@@ -382,7 +406,6 @@ function skip(dir){
     aud.currentTime -= 30;
 
   }
-  aud.play();
   myT = setInterval(timePastAndLeft, interV);
 
 }

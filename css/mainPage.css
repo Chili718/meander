@@ -164,7 +164,7 @@ Podcast Grid and Cells
   border: solid 1px black;
   padding: 0.4rem 1rem;
   align-items: center;
-  height: 150px;
+  height: 125px;
 
 
 }
@@ -183,7 +183,8 @@ Podcast Grid and Cells
 .dte{
 
   font-size: 0.9rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.7rem;
+  font-style: italic;
 
 
 }
@@ -192,12 +193,14 @@ Podcast Grid and Cells
 
   -webkit-line-clamp: 1;
   margin-bottom: 0.3rem;
+  font-size: 1rem;
 
 }
 
 .description{
 
   -webkit-line-clamp: 3;
+  font-size: 0.8rem;
 
 }
 
@@ -212,13 +215,15 @@ Podcast Grid and Cells
 .cellYou{
 
   padding: 0.2rem;
-  border: solid black 1px;
+  border-top: solid black 1px;
+  border-left: solid black 1px;
+  border-right: solid black 1px;
   position: absolute;
   background-color: white;
   display: flex;
   align-items: center;
   cursor: pointer;
-  top: 0;
+  top: -21.3%;
   right: 0;
 
 
@@ -306,7 +311,45 @@ Footer Audio Bar
 .audioBar h3{
 
   transform: translateY(0.5rem);
+  font-size: 1rem;
 
+}
+
+/*
+
+///////////////////////////////////////////////////////////
+Scrolling Text In Audio Bar
+///////////////////////////////////////////////////////////
+
+*/
+
+.scroll-left {
+ height: 1.4rem;
+ width: 50px;
+ overflow: hidden;
+ background: yellow;
+}
+
+.scroll-left h3 {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ transform:translateX(100%);
+ /* Apply animation to this element */
+ animation: scroll-left 15s linear infinite;
+}
+/* Move it (define the animation) */
+@keyframes scroll-left {
+   0%   {
+   transform: translateX(100%);
+   }
+   100% {
+   transform: translateX(-100%);
+   }
 }
 
 .tb{
