@@ -3,6 +3,7 @@ const bars = document.querySelector(".audioBar");
 const yous = document.querySelectorAll(".cellYou");
 const snd = document.getElementById("volum");
 var temp;
+var audio = document.getElementById("aud");
 
 yous.forEach(you => {
 
@@ -10,6 +11,8 @@ yous.forEach(you => {
 
     if(you.nextElementSibling.src != "https://www.youtube.com/embed/"){
 
+      if(!audio.paused)
+        audio.pause();
       //this is the cell
       you.parentNode.classList.toggle("cellPad");
 
@@ -45,6 +48,7 @@ ham.addEventListener("click", e => {
   ham.classList.toggle("ex");
   bars.classList.toggle("reveal");
   snd.classList.toggle("reveal");
+  bars.childNodes[3].firstElementChild.classList.toggle("scroll-play");
 
 
 });

@@ -70,9 +70,26 @@ cells.forEach(cell => {
 
       curCell = inner;
 
-      if(!aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
+      if(!aud.src.includes(inner.childNodes[3].innerHTML))
       {
-        aud.pause();
+
+        if(!aud.paused)
+          aud.pause();
+
+        if(!bar.childNodes[3].firstElementChild.classList.contains("scroll-play")){
+
+          bar.childNodes[3].firstElementChild.classList.toggle("scroll-play");
+
+        }
+        else
+        {
+
+          bar.childNodes[3].firstElementChild.classList.toggle("scroll-play");
+          setTimeout(function(){ bar.childNodes[3].firstElementChild.classList.toggle("scroll-play"); }, 500);
+
+        }
+
+
         finished();
 
         if(prevCell)
@@ -92,29 +109,8 @@ cells.forEach(cell => {
         pBar.src = "images/barPause.png";
         myT = setInterval(timePastAndLeft, interV);
 
-      }else if(!aud.src.includes(inner.childNodes[3].innerHTML) && aud.paused){
-
-        finished();
-
-        if(prevCell)
-        {
-            prevCell.childNodes[1].src = "images/small.png";
-            prevCell.classList.toggle("coggle");
-        }
-
-        bar.childNodes[3].firstElementChild.innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
-        aud.src = inner.childNodes[3].innerHTML;
-        aud.play();
-        aud.onloadedmetadata = function() {
-          range.max = Math.floor(aud.duration);
-        };
-        pBar.src = "images/barPause.png";
-        inner.childNodes[1].src = "images/pause.png";
-        inner.classList.toggle("coggle");
-        myT = setInterval(timePastAndLeft, interV);
-
-
-      }else if(aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
+      }
+      else if(aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
       {
 
         aud.pause();
@@ -305,6 +301,9 @@ function convertTime(seconds){
 
     sec = (sec < 10) ? "0" + sec : sec;
 
+    if(min <=9)
+      min = "0" + min;
+
     return min + ":" + sec;
 
   }else{
@@ -312,6 +311,9 @@ function convertTime(seconds){
     min = (min < 10) ? "0" + min : min;
 
     sec = (sec < 10) ? "0" + sec : sec;
+
+    if(hours <=9)
+      hours = "0" + hours;
 
     return hours + ":" + min + ":" + sec;
 
