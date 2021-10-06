@@ -37,8 +37,9 @@ var curCell;
 var seeking = false;
 
 //adds functionality for keeping the users time
-//they were last on before muting
+//they were last on before muting and that specific volume icon
 var prevVol = 1.0;
+var preVolSymbol = "<ion-icon name='volume-high-outline'></ion-icon>";
 
 cells.forEach(cell => {
   //settimeout runs only once
@@ -106,7 +107,7 @@ cells.forEach(cell => {
         };
         inner.classList.toggle("coggle");
         inner.childNodes[1].src = "images/pause.png";
-        pBar.src = "images/barPause.png";
+        pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
         myT = setInterval(timePastAndLeft, interV);
 
       }
@@ -115,7 +116,7 @@ cells.forEach(cell => {
 
         aud.pause();
         inner.childNodes[1].src = "images/play.png";
-        pBar.src = "images/barPlay.png";
+        pBar.innerHTML = "<ion-icon name='play-circle-outline'></ion-icon>";
         finished();
 
       }
@@ -123,7 +124,7 @@ cells.forEach(cell => {
       {
 
         aud.play();
-        pBar.src = "images/barPause.png";
+        pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
         inner.childNodes[1].src = "images/pause.png";
         myT = setInterval(timePastAndLeft, interV);
 
@@ -188,17 +189,33 @@ volumeBar.addEventListener("input", e=>{
 
   if(volumeBar.value == 0.0){
 
-    volumeBar.nextElementSibling.src = "images/noSound.png";
+    volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-mute-outline'></ion-icon>";
 
   }else if(volumeBar.value > 0.0){
+    /*
+    if(!volumeBar.nextElementSibling.innerHTML.includes("volume-high-outline")){
 
-    if(!volumeBar.nextElementSibling.src.includes("sound.png")){
+      volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-high-outline'></ion-icon>";
 
-      volumeBar.nextElementSibling.src = "images/sound.png";
+    }
+    */
+
+    if(volumeBar.value <= 0.33){
+
+      volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-low-outline'></ion-icon>";
+
+    }else if(volumeBar.value > 0.33 && volumeBar.value <= 0.66){
+
+      volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-medium-outline'></ion-icon>";
+
+    }else{
+
+      volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-high-outline'></ion-icon>";
 
     }
 
     prevVol = volumeBar.value;
+    preVolSymbol = volumeBar.nextElementSibling.innerHTML;
 
   }
 
@@ -217,21 +234,20 @@ volumeBar.addEventListener("change", e=>{
   }
 });
 */
+
 volumeBar.nextElementSibling.addEventListener("click", e=>{
 
-  if(volumeBar.nextElementSibling.src.includes("sound.png")){
-
-    //prevVol = volumeBar.value;
-    volumeBar.value = 0.0;
-    volumeBar.nextElementSibling.src = "images/noSound.png";
-    aud.volume = volumeBar.value;
-
-  }
-  else if(volumeBar.nextElementSibling.src.includes("noSound.png"))
+  if(volumeBar.nextElementSibling.innerHTML.includes("volume-mute-outline"))
   {
 
     volumeBar.value = prevVol;
-    volumeBar.nextElementSibling.src = "images/sound.png";
+    volumeBar.nextElementSibling.innerHTML = preVolSymbol;
+    aud.volume = volumeBar.value;
+
+  }else{
+
+    volumeBar.value = 0.0;
+    volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-mute-outline'></ion-icon>";
     aud.volume = volumeBar.value;
 
   }
@@ -267,7 +283,7 @@ function playOPause(){
       aud.play();
       myT = setInterval(timePastAndLeft, interV);
       curCell.childNodes[1].src = "images/pause.png";
-      pBar.src = "images/barPause.png";
+      pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
       if(!bar.classList.contains("reveal")){
 
         bar.classList.toggle("reveal");
@@ -280,7 +296,7 @@ function playOPause(){
       aud.pause();
       finished();
       curCell.childNodes[1].src = "images/play.png";
-      pBar.src = "images/barPlay.png";
+      pBar.innerHTML = "<ion-icon name='play-circle-outline'></ion-icon>";
     }
 
   }
@@ -391,7 +407,7 @@ function finished(){
   clearInterval(myT);
   timePastAndLeft();
   curCell.childNodes[1].src = "images/play.png";
-  pBar.src = "images/barPlay.png";
+  pBar.innerHTML = "<ion-icon name='play-circle-outline'></ion-icon>";
 
 }
 

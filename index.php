@@ -24,17 +24,34 @@
 
     </div>
 
+    <!-------------------------------------------->
+    <!---Start of Top Logo and Search Options------>
+    <!-------------------------------------------->
     <div class="options">
+
       <img class="homeImg" src="images/Meander.png">
+
       <h1>Podcast Episodes</h1>
+
       <div class="toptions">
-        <input type="text" id="search" class="srch" onkeyup="" placeholder="Search for...">
+
+        <div class="srchContainer">
+          <input type="text" id="search" class="srch" onkeyup="" placeholder="Search for...">
+          <div class="srchIcon">
+            <ion-icon name="search"></ion-icon>
+          </div>
+        </div>
+
         <select class="filter" name="fil">
           <option value="new">Newest</option>
           <option value="old">Oldest</option>
         </select>
+
       </div>
     </div>
+    <!-------------------------------------------->
+    <!---End of Top Logo and Search Options------>
+    <!-------------------------------------------->
 
 
     <div class="grid">
@@ -60,9 +77,13 @@
 
       <div class="tb">
 
-        <img src="images/barPlay.png" id="pBar" class="pBar">
+        <div class="audioButtons pBar" id="pBar">
+          <ion-icon name="play-circle-outline"></ion-icon>
+        </div>
 
-        <img src="images/previous.png" class="previous">
+        <div class="audioButtons previous">
+          <ion-icon name="play-skip-back-circle-outline"></ion-icon>
+        </div>
 
         <img src="images/secondsBack.png" class="prevSec" id="l">
 
@@ -78,11 +99,17 @@
 
         <img src="images/secondsForward.png" class="nextSec" id="r">
 
-        <img src="images/next.png" class="next">
+        <div class="audioButtons next">
+          <ion-icon name="play-skip-forward-circle-outline"></ion-icon>
+        </div>
 
       </div>
 
     </div>
+
+    <!-------------------------------------------->
+    <!---End of Audio Bar------>
+    <!-------------------------------------------->
 
     <div class="burger">
       <div class="line1"></div>
@@ -91,15 +118,15 @@
 
     <div class="volum" id="volum">
       <input type="range" value="1" min="0" max="1" step="0.01" class="volSlid" id="vol">
-      <img src="images/sound.png">
+      <div class="audioButtons volIcon">
+        <ion-icon name="volume-high-outline"></ion-icon>
+      </div>
     </div>
 
-    <!-------------------------------------------->
-    <!---End of Audio Bar------>
-    <!-------------------------------------------->
-
-  <script src="js/audio.js"></script>
-  <script src="js/burger.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/burger.js"></script>
 
 </body>
 </html>
