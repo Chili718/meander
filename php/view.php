@@ -1,5 +1,7 @@
 <?php
 
+//header("Set-Cookie: cname=cvalue; SameSite=none; Secure");
+
 require 'dbCON.php';
 
 if (!$con) {

@@ -8,6 +8,7 @@
 html{
 
   scroll-behavior: smooth;
+  font-size: 16px;
 
 }
 
@@ -65,8 +66,9 @@ Main image and search options
 
 .homeImg{
 
-  width: 75vw;
-  max-width: 800px;
+  width: 85vw;
+  max-width: 725px;
+  min-width: 325px;
 
 }
 
@@ -102,9 +104,9 @@ Main image and search options
   font-family: hypatia-sans-pro,sans-serif;
   font-weight: 600;
   font-style: normal;
-  width: 33vw;
+  width: 40vw;
   color: #45464a;
-  max-width: 375px;
+  max-width: 450px;
   min-width: 75px;
   margin-right: 2rem;
 }
@@ -144,6 +146,7 @@ select {
   cursor: pointer;
   border: none;
   box-shadow: .1rem .1rem .25rem rgba(213, 215, 222, 1), -.07rem -.07rem .25rem #f5f5f5;
+  width: 80px;
 
 }
 
@@ -153,6 +156,7 @@ select {
   justify-content: space-between;
   align-items: center;
   padding-top: 2rem;
+  padding-left: calc(80px + 2rem);
 
 }
 
@@ -202,6 +206,7 @@ Podcast Grid and Cells
   align-items: center;
   height: 125px;
   border-radius: 15px;
+  transition: 0.2s ease-in-out;
 
 }
 
@@ -250,7 +255,7 @@ Podcast Grid and Cells
 
 .cellYou{
 
-  padding: 0.2rem;
+  padding: 0.3rem;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: outset;
   border-width: 1px 1px 0px 1px;
@@ -265,12 +270,19 @@ Podcast Grid and Cells
 
 
 }
+
+.cellYou p{
+
+  font-size: 0.9rem;
+  padding-left: 5px;
+
+}
+
 .cellYou img{
 
   width: 15px;
   margin-left: 0.6rem;
   margin-right: 0.2rem;
-  transition: 0.3s ease-in-out;
 
 }
 
@@ -308,7 +320,7 @@ Podcast Grid and Cells
 
   width: 12%;
   max-width: 115px;
-  min-width: 85px;
+  min-width: 50px;
 
 }
 
@@ -589,6 +601,7 @@ Volume Bar
   height: 5px;
   margin-right: 0.4rem;
   transition: opacity .2s;
+  border-radius: 15px;
 
 }
 
@@ -624,6 +637,70 @@ Media Queries
 ///////////////////////////////////////////////////////////
 
 */
+
+@media screen and (max-width: 700px){
+
+  html{
+
+    font-size: 14px;
+
+  }
+
+  .grid{
+
+    margin: 0vw 2vw 5vw 2vw;
+
+  }
+
+}
+
+@media screen and (max-width: 601px){
+
+  html{
+
+    font-size: 12px;
+
+  }
+
+  .toptions{
+
+    flex-direction: column;
+    padding-left: 0px;
+
+  }
+
+  .filter{
+
+    margin-top: 10px;
+
+  }
+
+  .srch{
+
+    width: 65vw;
+    margin-right: 0px;
+
+  }
+
+  .innerCell{
+
+    height: 75px;
+
+  }
+
+  .description{
+
+    -webkit-line-clamp: 1;
+
+  }
+
+  .cellYou{
+
+    top: -28%;
+
+  }
+
+}
 
 @media (hover:hover) and (pointer:fine) {
 
