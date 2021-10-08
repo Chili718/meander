@@ -11,6 +11,7 @@
   <link rel="icon" href="images/icon.png">
 
   <link rel="stylesheet" href="css/mainPage.css">
+  <link rel="stylesheet" href="css/audioBar.css">
 
   <link rel="stylesheet" href="https://use.typekit.net/bft1kct.css">
 
@@ -27,7 +28,7 @@
     <!-------------------------------------------->
     <!---Start of Top Logo and Search Options------>
     <!-------------------------------------------->
-    <div class="options">
+    <div class="searchAndLogo">
 
       <img class="homeImg" src="images/Meander.png">
 

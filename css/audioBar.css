@@ -1,0 +1,332 @@
+/*
+
+///////////////////////////////////////////////////////////
+CSS for the elements of the audio bar and volume bar for the site plus burger
+///////////////////////////////////////////////////////////
+
+*/
+.audioBar{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  background-color: white;
+  bottom: 0;
+  width: 100vw;
+  height: 8vh;
+  padding: 0.4rem 0rem;
+  transform: translateX(101vw);
+  transition: 1s ease-in-out;
+  box-shadow: 0.15rem 0.15rem 0.4rem rgb(0 0 0 / 20%), -0.1rem -0.1rem 0.35rem rgb(0 0 0 / 10%);
+  overflow: hidden;
+
+
+}
+
+.audioBar h3{
+
+  font-size: 1rem;
+
+}
+
+/*
+
+///////////////////////////////////////////////////////////
+Scrolling Text In Audio Bar
+///////////////////////////////////////////////////////////
+
+*/
+
+.scroll-left {
+ height: 1.4rem;
+ width: 50vw;
+ overflow-x: hidden;
+ background: yellow;
+}
+
+.scroll-left h3 {
+
+  text-align: left;
+ /* Apply animation to this element */
+ position: relative;
+
+}
+
+.scroll-play{
+
+  animation: scroll-left 40s linear infinite;
+
+}
+/* Move it (define the animation) */
+@keyframes scroll-left {
+   25%   {
+   transform: translateX(0%);
+   }
+   50% {
+   transform: translateX(-50%);
+   }
+   75%{
+     transform: translateX(-50%);
+   }
+   100%{
+     transform: translateX(0%);
+   }
+}
+
+.tb{
+
+  display: flex;
+  align-items: center;
+  position: relative;
+
+}
+
+input[type=range]{
+
+  -webkit-appearance: none;
+
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 35vw;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background-image: url('../images/slider.png');
+  background-position: center;
+  cursor: ew-resize;
+}
+
+.reveal{
+
+  transform: translate(0vw) !important;
+
+}
+
+/*
+
+///////////////////////////////////////////////////////////
+Time Text and Audio Bar Buttons
+///////////////////////////////////////////////////////////
+
+*/
+
+.time{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: hypatia-sans-pro,sans-serif;
+  font-weight: 600;
+  font-style: normal;
+
+}
+
+.currentTime, .duration{
+
+  padding: 0rem 1rem;
+
+}
+
+.audioButtons{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+ion-icon {
+  --ionicon-stroke-width: 20px;
+}
+
+.next, .previous{
+
+  font-size: 2.6rem;
+  transition: 0.3s ease-in-out;
+  margin: 0rem 0.5rem;
+}
+
+.nextSec, .prevSec{
+
+  width: 2rem;
+  transition: 0.3s ease-in-out;
+  margin: 0rem 0.5rem;
+
+}
+
+.pBar{
+
+  position: absolute;
+  bottom: 0%;
+  left: -4rem;
+  transition: 0.2s ease-in-out;
+  font-size: 3.5rem;
+
+}
+
+/*
+
+///////////////////////////////////////////////////////////
+Volume Bar
+///////////////////////////////////////////////////////////
+
+*/
+
+.volum{
+
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 34vw;
+  box-shadow: 0.15rem 0.15rem 0.4rem rgb(0 0 0 / 20%), -0.1rem -0.1rem 0.35rem rgb(0 0 0 / 5%);
+  top: 0;
+  right: 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  margin-top: 0.4rem;
+  margin-right: 1rem;
+  max-width: 215px;
+  min-width: 175px;
+  transition: 1s ease-in-out;
+  transform: translateX(32vw);
+  background-color: white;
+
+}
+
+.volIcon{
+
+  font-size: 1.5rem;
+
+}
+
+.volSlid{
+
+  width: 100%;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  height: 5px;
+  margin-right: 0.4rem;
+  transition: opacity .2s;
+  border-radius: 15px;
+
+}
+
+.volSlid::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 0.5rem;
+  cursor: ew-resize;
+  background: #434343;
+
+}
+
+/*
+
+///////////////////////////////////////////////////////////
+Burger
+///////////////////////////////////////////////////////////
+
+*/
+
+.burger{
+  position: fixed;
+  z-index: 5;
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  bottom: 2.5%;
+  right: 2.5%;
+  background-color: white;
+  border: dashed black 2px;
+  padding: 0.2rem 0.3rem;
+  border-radius: 4rem;
+}
+
+.ex{
+
+  transform: rotate(405deg);
+
+}
+
+.burger div{
+  background-color: #000000;
+}
+/*Horizontal*/
+.line1{
+
+  transform: translateY(12.5px) translateX(0.4px);
+  width: 25.4px;
+  height: 3px;
+
+}
+/*Vertical*/
+.line2{
+
+  transform: translateX(11.5px) translateY(-1px);
+  width: 3px;
+  height: 25px;
+
+}
+
+@media screen and (max-width: 769px){
+
+  .volum{
+
+    transform: translateX(75vw);
+
+  }
+
+}
+
+@media screen and (max-width: 601px){
+
+  .volSlid::-webkit-slider-thumb {
+
+    width: 10px;
+    height: 10px;
+
+  }
+
+}
+
+@media (hover:hover) and (pointer:fine) {
+
+  .next:hover, .previous:hover{
+
+    transform: scale(1.2);
+
+  }
+
+  .nextSec:hover, .prevSec:hover{
+
+    transform: scale(1.2);
+
+
+  }
+
+  .slider:hover, .volSlid:hover{
+    opacity: 1;
+  }
+
+  .pBar:hover{
+
+    transform: scale(1.1);
+
+  }
+
+}

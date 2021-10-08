@@ -13,19 +13,18 @@ yous.forEach(you => {
 
       if(!audio.paused)
         audio.pause();
-      //this is the cell
-      you.parentNode.classList.toggle("cellPad");
 
-      you.classList.toggle("coggle");
+      you.classList.toggle("cogglePOS");
+      you.firstElementChild.classList.toggle("coggle");
 
       //this is the iframe in the cell
       you.nextElementSibling.classList.toggle("hideVid");
 
       you.parentNode.scrollIntoView(false,{behavior: "smooth"});
 
-      you.nextElementSibling.classList.toggle("showVid");
+      you.nextElementSibling.firstElementChild.classList.toggle("showVid");
 
-      you.lastElementChild.classList.toggle("youDown");
+      you.firstElementChild.lastElementChild.classList.toggle("youDown");
 
       //I did this after fooling around with the api for the youtube iframe api
       //to which I concluded that it could not accimplish what I wanted it to

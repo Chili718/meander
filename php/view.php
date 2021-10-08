@@ -25,12 +25,14 @@ else
       $print .= "<div class='cell'>
 
         <div class='cellYou'>
+          <div>
           <p>YouTube</p>
           <img src='images/youVid.png'>
+          </div>
         </div>
-
-        <iframe src='".$src."' class='cellVid hideVid' allowfullscreen></iframe>
-
+        <div class='videoWrapper hideVid'>
+        <iframe src='".$src."' class='cellVid' allowfullscreen></iframe>
+        </div>
         <div class='innerCell'>
 
           <img class='logo' src='images/small.png'>
