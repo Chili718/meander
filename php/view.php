@@ -1,4 +1,10 @@
 <?php
+/*
+
+PHP file for obtaining all of the podcasts data in the db and
+outputting them into a the format to be displayed on the homepage 
+
+*/
 
 //header("Set-Cookie: cname=cvalue; SameSite=none; Secure");
 

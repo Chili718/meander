@@ -51,7 +51,7 @@
       </div>
     </div>
     <!-------------------------------------------->
-    <!---End of Top Logo and Search Options------>
+    <!---End of Top Logo and Search Options and Start of Grid with Cells------>
     <!-------------------------------------------->
 
 
@@ -66,7 +66,7 @@
     </div>
 
     <!-------------------------------------------->
-    <!---Start of Audio Bar------>
+    <!---End of Grid with Cells and Start of Audio Bar------>
     <!-------------------------------------------->
     <div class="audioBar" id="bar">
 
@@ -109,7 +109,7 @@
     </div>
 
     <!-------------------------------------------->
-    <!---End of Audio Bar------>
+    <!---End of Audio Bar and Start of Burger and Volume Bar------>
     <!-------------------------------------------->
 
     <div class="burger">
@@ -123,6 +123,10 @@
         <ion-icon name="volume-high-outline"></ion-icon>
       </div>
     </div>
+
+    <!-------------------------------------------->
+    <!---End of Burger and Volume Bar------>
+    <!-------------------------------------------->
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

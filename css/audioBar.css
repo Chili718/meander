@@ -232,7 +232,8 @@ Volume Bar
   height: 15px;
   border-radius: 0.5rem;
   cursor: ew-resize;
-  background: #434343;
+  background-image: url('../images/slider.png');
+  background-position: center;
 
 }
 
@@ -290,6 +291,12 @@ Burger
     transform: translateX(75vw);
 
   }
+
+}
+
+@media screen and (max-width: 675px){
+
+  
 
 }
 
