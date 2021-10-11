@@ -14,10 +14,10 @@ CSS for the elements of the audio bar and volume bar for the site plus burger
   position: fixed;
   background-color: white;
   bottom: 0;
-  width: 100vw;
+  width: 103vw;
   height: 8vh;
   padding: 0.4rem 0rem;
-  transform: translateX(101vw);
+  transform: translateX(102vw);
   transition: 1s ease-in-out;
   box-shadow: 0.15rem 0.15rem 0.4rem rgb(0 0 0 / 20%), -0.1rem -0.1rem 0.35rem rgb(0 0 0 / 10%);
   overflow: hidden;
@@ -40,10 +40,14 @@ Scrolling Text In Audio Bar
 */
 
 .scroll-left {
- height: 1.4rem;
- width: 50vw;
- overflow-x: hidden;
- background: yellow;
+  height: 1.4rem;
+  width: clamp(250px, 65vw, 675px);
+  overflow-x: hidden;
+  background: yellow;
+  position: absolute;
+  top: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .scroll-left h3 {
@@ -51,6 +55,7 @@ Scrolling Text In Audio Bar
   text-align: left;
  /* Apply animation to this element */
  position: relative;
+ white-space: nowrap;
 
 }
 
@@ -80,6 +85,8 @@ Scrolling Text In Audio Bar
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: 4.5rem;
+  margin-top: 1.6rem;
 
 }
 
@@ -131,6 +138,7 @@ Time Text and Audio Bar Buttons
   font-family: hypatia-sans-pro,sans-serif;
   font-weight: 600;
   font-style: normal;
+  width: clamp(200px, 50vw, 600px);
 
 }
 
@@ -163,18 +171,28 @@ ion-icon {
 .nextSec, .prevSec{
 
   width: 2rem;
+  height: 2rem;
   transition: 0.3s ease-in-out;
   margin: 0rem 0.5rem;
 
 }
 
-.pBar{
+.nextSec{
+  /*
+  margin-left: clamp(200px, 50vw, 600px);
+  */
+}
 
+.pBar{
+  /*
   position: absolute;
   bottom: 0%;
   left: -4rem;
+  */
   transition: 0.2s ease-in-out;
-  font-size: 3.5rem;
+  font-size: 4rem;
+  margin-bottom: 1.7rem;
+  padding-right: 0.5rem;
 
 }
 
@@ -296,7 +314,53 @@ Burger
 
 @media screen and (max-width: 675px){
 
-  
+  .audioBar{
+
+    height: 18vh;
+
+  }
+
+  .time{
+
+    position: absolute;
+    top: -4vh;
+    width: auto;
+
+  }
+
+  .slider{
+
+    width: clamp(200px, 70vw, 450px)
+
+  }
+
+  .scroll-left{
+
+    width: clamp(250px, 75vw, 675px);
+
+  }
+
+  .tb{
+
+    margin-top: 4.6rem;
+    margin-right: 0rem;
+    justify-content: space-evenly;
+    width: clamp(200px, 60vw, 400px);
+
+  }
+
+  .next{
+
+    margin-right: 7rem;
+
+  }
+
+  .pBar{
+
+    margin-bottom: 0.7rem;
+    padding-right: 2rem;
+
+  }
 
 }
 
