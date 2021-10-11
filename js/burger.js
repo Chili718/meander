@@ -1,7 +1,7 @@
-const ham = document.querySelector(".burger");
-const bars = document.querySelector(".audioBar");
-const yous = document.querySelectorAll(".cellYou");
-const snd = document.getElementById("volum");
+var ham = document.querySelector(".burger");
+var bars = document.querySelector(".audioBar");
+var yous = document.querySelectorAll(".cellYou");
+var snd = document.getElementById("volum");
 var temp;
 var audio = document.getElementById("aud");
 
