@@ -20,9 +20,9 @@
 
 </head>
 <body>
-
+    
     <div class="socLinks">
-
+      <img src="images/socialLinks.png">
     </div>
 
     <!-------------------------------------------->
@@ -126,6 +126,18 @@
 
     <!-------------------------------------------->
     <!---End of Burger and Volume Bar------>
+    <!-------------------------------------------->
+
+    <!-------------------------------------------->
+    <!---Start of background images------>
+    <!-------------------------------------------->
+
+    <img class="bgImages basketball" src="images/basketball.png">
+
+    <img class="bgImages football" src="images/football.png">
+
+    <!-------------------------------------------->
+    <!---End of background images------>
     <!-------------------------------------------->
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -2,16 +2,16 @@
 /*
 
 PHP file for obtaining all of the podcasts data in the db and
-outputting them into a the format to be displayed on the homepage 
+outputting them into a the format to be displayed on the homepage
 
 */
 
 //header("Set-Cookie: cname=cvalue; SameSite=none; Secure");
 
 require 'dbCON.php';
-
+//checking for a successful db connection
 if (!$con) {
-  echo "<h2 class='err'>Oops might be the internet or me!</h2>";
+  echo "<h3 id='errorTxt'>Oops might be the internet or me!</h3>";
 }
 else
 {
@@ -21,13 +21,13 @@ else
   $print = "";
 
   if (mysqli_num_rows($result)!=0) {
-
+    //create each podcasts cell and append it to the string that will be dumped on the page
     while($data = $result->fetch_assoc()){
 
-      //print_r($data);
+      //create the youtube video path from the embed string
       $src = "https://www.youtube.com/embed/";
       $src = $src . $data["ytEmbed"];
-
+      //create the individual cell from all the data relating to the podcast
       $print .= "<div class='cell'>
 
         <div class='cellYou'>
@@ -58,10 +58,10 @@ else
 
   }else{
 
-    $print = "<h2 class='err'>Looks like its the internet!!!!</h2>";
+    $print = "<h3 id='errorTxt'>Looks like its the internet!!!!</h3>";
 
   }
-
+  //print the string containing all the cells on the homepage
   echo $print;
 
   $con->close();

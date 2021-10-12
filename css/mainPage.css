@@ -256,6 +256,14 @@ Podcast Grid and Cells
 
 }
 
+/*
+
+///////////////////////////////////////////////////////////
+Cell youtube video tab and iframe
+///////////////////////////////////////////////////////////
+
+*/
+
 .cellYou{
   /*
   border-color: rgba(0, 0, 0, 0.2);
@@ -280,6 +288,7 @@ Podcast Grid and Cells
   border-radius: 10px 10px 0px 0px;
   padding: 0.3rem;
   transition: 0.2s ease-in-out;
+  background-color: white;
 
 }
 
@@ -361,10 +370,69 @@ Social Media Links
 
 .socLinks{
 
-
+  position: fixed;
+  z-index: 10;
 
 }
 
+.socLinks img{
+
+  width: clamp(90px, 22vw, 200px);
+  padding-left: 5px;
+  cursor: pointer;
+
+}
+
+/*
+
+///////////////////////////////////////////////////////////
+Background images with animations
+///////////////////////////////////////////////////////////
+
+*/
+
+.bgImages{
+
+  position: fixed;
+  z-index: -1;
+
+}
+
+.basketball{
+
+  top: -10%;
+  left: -11%;
+  width: clamp(250px, 45vw, 450px);
+  animation: ball-rotate 240s infinite alternate;
+
+}
+
+.football{
+
+  bottom: -4%;
+  right: -4%;
+  width: clamp(250px, 45vw, 450px);
+  animation: ball-fall 200s infinite alternate;
+
+}
+
+@keyframes ball-rotate {
+   0%   {
+   transform: rotate(0deg) translateY(0px);
+   }
+   100%{
+     transform: rotate(360deg) translateY(75px);
+   }
+}
+
+@keyframes ball-fall {
+   0%   {
+   transform: translateX(0px) translateY(0px);
+   }
+   100%{
+     transform: translateX(-150px) translateY(150px);
+   }
+}
 
 /*
 
@@ -379,12 +447,6 @@ Media Queries
   html{
 
     font-size: 14px;
-
-  }
-
-  .grid{
-
-    margin: 0vw 2vw 5vw 2vw;
 
   }
 
@@ -455,6 +517,16 @@ Media Queries
   .cellYou{
 
     /*top: -32.4px;*/
+
+  }
+
+}
+
+@media screen and (max-width: 426px){
+
+  .homeImg{
+
+    padding-top: 35px;
 
   }
 

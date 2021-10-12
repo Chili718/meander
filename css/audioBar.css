@@ -312,6 +312,35 @@ Burger
 
 }
 
+/**************************************************************************
+Error and Success Messages
+**************************************************************************/
+#errorTxt{
+
+  font-family: livory, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.4rem;
+  text-align: center;
+  color:#e61936;
+
+}
+
+.cpyrght{
+
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  background: red;
+  padding: 5px 15px;
+  font-size: 0.8rem;
+  font-family: cardea, serif;
+  font-weight: 400;
+  font-style: normal;
+  color: blue;
+
+}
+
 @media screen and (max-width: 769px){
 
   .volum{

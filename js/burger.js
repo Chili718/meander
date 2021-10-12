@@ -1,29 +1,41 @@
+/*
+////////////////////////////////////////////////////
+JS File for the functionality of the hamburger and embeded
+youtube video tab
+///////////////////////////////////////////////////
+*/
+
 var ham = document.querySelector(".burger");
 var bars = document.querySelector(".audioBar");
-var yous = document.querySelectorAll(".cellYou");
 var snd = document.getElementById("volum");
+
+//selecting all of the youtube cells tabs
+var yous = document.querySelectorAll(".cellYou");
+//temp variable to holding the video source to be reset on close to pause the video
 var temp;
+
 var audio = document.getElementById("aud");
 
 yous.forEach(you => {
 
   you.addEventListener("click", e => {
-
+    //checking if the yt vid has an actual embed code
     if(you.nextElementSibling.src != "https://www.youtube.com/embed/"){
-
+      //pause the audio when opening the yt vid to not interfere with its audio
       if(!audio.paused)
         audio.pause();
 
-      you.classList.toggle("cogglePOS");
+      //you.classList.toggle("cogglePOS");
+      //toggle the class which darkens the tabs background
       you.firstElementChild.classList.toggle("coggle");
 
-      //this is the iframe in the cell
+      //toggle to show on the iframe wrapper
       you.nextElementSibling.classList.toggle("hideVid");
-
+      //scroll the entire cell plus the video into a better view
       you.parentNode.scrollIntoView(false,{behavior: "smooth"});
-
+      //now show the iframe itself in the wrapper
       you.nextElementSibling.firstElementChild.classList.toggle("showVid");
-
+      //toggle the class that will turn the arrow up or down
       you.firstElementChild.lastElementChild.classList.toggle("youDown");
 
       //I did this after fooling around with the api for the youtube iframe api
@@ -41,7 +53,7 @@ yous.forEach(you => {
   });
 
 });
-
+//hamburger hides sound, audio bar and toggles the scrolling text animtaion
 ham.addEventListener("click", e => {
 
   ham.classList.toggle("ex");
@@ -52,8 +64,8 @@ ham.addEventListener("click", e => {
 
 });
 //stop animations from playing when the window is being resized
-//removes the jank look
-let resizeTimer;
+//removes the jank look of shifting elements
+var resizeTimer;
 window.addEventListener("resize", e => {
 
   document.body.classList.add("resize-animation-stopper");

@@ -40,7 +40,7 @@ var seeking = false;
 //they were last on before muting and that specific volume icon
 var prevVol = 1.0;
 var preVolSymbol = "<ion-icon name='volume-high-outline'></ion-icon>";
-
+//var for the length of the title what is cut off in the audio bar
 var titleOffset = 0;
 
 
