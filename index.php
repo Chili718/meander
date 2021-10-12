@@ -20,10 +20,11 @@
 
 </head>
 <body>
-    
-    <div class="socLinks">
-      <img src="images/socialLinks.png">
-    </div>
+
+    <!--<img class="basket" src="images/socialLinks.png">-->
+    <a href="https://open.spotify.com/show/3SHb1fi8gjoe8IRzbRnX2E?si=nZP_ZCkVQbiebb1ew1qdiA&dl_branch=1" target="_blank" rel="noopener noreferrer">
+      <img class="spotify" src="images/spotify.png">
+    </a>
 
     <!-------------------------------------------->
     <!---Start of Top Logo and Search Options------>
@@ -31,6 +32,22 @@
     <div class="searchAndLogo">
 
       <img class="homeImg" src="images/Meander.png">
+
+      <div class="socialButtonsContainer">
+
+        <a href="https://www.instagram.com/theofficialmeander/" target="_blank" rel="noopener noreferrer">
+          <div class="socialButtons">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </div>
+        </a>
+
+        <a href="https://twitter.com/OfficialMeander" target="_blank" rel="noopener noreferrer">
+          <div class="socialButtons">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </div>
+        </a>
+
+      </div>
 
       <h1>Podcast Episodes</h1>
 
@@ -139,6 +156,8 @@
     <!-------------------------------------------->
     <!---End of background images------>
     <!-------------------------------------------->
+
+    <p class="cpyrght"> &copy; 2021 The Meadner. <p>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -21,7 +21,7 @@ html{
 
 body{
 
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   background-color: #ffffff;
 
 }
@@ -176,12 +176,13 @@ Podcast Grid and Cells
 */
 
 .grid{
+
+  margin: 0vw 5vw 5vw 5vw;
   display: grid;
   grid-template-columns: repeat(1, minmax(250px, 1000px));
   grid-gap: 4rem;
   padding-bottom: calc(6vh + 0.3rem);
   justify-content: center;
-  margin: 0vw 5vw 5vw 5vw;
 
 }
 
@@ -367,7 +368,7 @@ Social Media Links
 ///////////////////////////////////////////////////////////
 
 */
-
+/*
 .socLinks{
 
   position: fixed;
@@ -375,11 +376,50 @@ Social Media Links
 
 }
 
-.socLinks img{
+.basket{
 
   width: clamp(90px, 22vw, 200px);
-  padding-left: 5px;
+  left: 5px;
   cursor: pointer;
+  position: fixed;
+
+}
+*/
+.spotify{
+
+  width: clamp(100px, 20vw, 175px);
+  cursor: pointer;
+  position: fixed;
+  left: 1%;
+  top: 1%;
+  z-index: 10;
+  transition: 0.4s ease-out;
+
+}
+
+.socialButtonsContainer{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 250px;
+
+}
+
+.socialButtons{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0.15rem 0.15rem 0.4rem rgb(0 0 0 / 20%), 0rem 0rem 0.15rem rgb(0 0 0 / 1%);
+  margin: -2rem 0.5rem 1.5rem 0.5rem;
+  padding: 10px;
+  border-radius: 35px;
+  font-size: 2.6rem;
+  transition: 0.4s ease-out;
+  color: black;
+  background-color: white;
 
 }
 
@@ -390,6 +430,24 @@ Background images with animations
 ///////////////////////////////////////////////////////////
 
 */
+
+@keyframes ball-rotate {
+   0%   {
+   transform: rotate(0deg) translateY(0px);
+   }
+   100%{
+     transform: rotate(360deg) translateY(100px);
+   }
+}
+
+@keyframes ball-fall {
+   0%   {
+   transform: translateX(0px) translateY(0px);
+   }
+   100%{
+     transform: translateX(-150px) translateY(150px);
+   }
+}
 
 .bgImages{
 
@@ -403,7 +461,7 @@ Background images with animations
   top: -10%;
   left: -11%;
   width: clamp(250px, 45vw, 450px);
-  animation: ball-rotate 240s infinite alternate;
+  animation: ball-rotate 250s infinite alternate;
 
 }
 
@@ -412,26 +470,8 @@ Background images with animations
   bottom: -4%;
   right: -4%;
   width: clamp(250px, 45vw, 450px);
-  animation: ball-fall 200s infinite alternate;
+  animation: ball-fall 160s infinite alternate;
 
-}
-
-@keyframes ball-rotate {
-   0%   {
-   transform: rotate(0deg) translateY(0px);
-   }
-   100%{
-     transform: rotate(360deg) translateY(75px);
-   }
-}
-
-@keyframes ball-fall {
-   0%   {
-   transform: translateX(0px) translateY(0px);
-   }
-   100%{
-     transform: translateX(-150px) translateY(150px);
-   }
 }
 
 /*
@@ -530,6 +570,12 @@ Media Queries
 
   }
 
+  .socialButtons{
+
+    margin: -0.5rem 0.5rem 1.5rem 0.5rem;
+
+  }
+
 }
 
 @media (hover:hover) and (pointer:fine) {
@@ -543,6 +589,18 @@ Media Queries
   .cellYou > div:hover{
 
     background-color: #dedede;
+
+  }
+
+  .socialButtons:hover{
+
+    transform: scale(1.1);
+
+  }
+
+  .spotify:hover{
+
+    transform: scale(1.05);
 
   }
 
