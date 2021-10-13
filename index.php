@@ -22,6 +22,7 @@
 <body>
 
     <!--<img class="basket" src="images/socialLinks.png">-->
+
     <a href="https://open.spotify.com/show/3SHb1fi8gjoe8IRzbRnX2E?si=nZP_ZCkVQbiebb1ew1qdiA&dl_branch=1" target="_blank" rel="noopener noreferrer">
       <img class="spotify" src="images/spotify.png">
     </a>
@@ -85,6 +86,7 @@
     <!-------------------------------------------->
     <!---End of Grid with Cells and Start of Audio Bar------>
     <!-------------------------------------------->
+
     <div class="audioBar" id="bar">
 
       <audio src="" id="aud" preload="metadata" onended="finished()"></audio>

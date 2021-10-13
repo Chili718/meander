@@ -21,9 +21,12 @@ html{
 
 body{
 
-  overflow-x: hidden !important;
   background-color: #ffffff;
 
+}
+
+html, body {
+  overflow-x: hidden !important;
 }
 /*
 
@@ -462,6 +465,7 @@ Background images with animations
   left: -11%;
   width: clamp(250px, 45vw, 450px);
   animation: ball-rotate 250s infinite alternate;
+  overflow: hidden;
 
 }
 
@@ -471,6 +475,7 @@ Background images with animations
   right: -4%;
   width: clamp(250px, 45vw, 450px);
   animation: ball-fall 160s infinite alternate;
+  overflow: hidden;
 
 }
 

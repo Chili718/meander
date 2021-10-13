@@ -21,7 +21,7 @@ CSS for the elements of the audio bar and volume bar for the site plus burger
   position: fixed;
   background-color: white;
   bottom: 0;
-  width: 103vw;
+  width: 100vw;
   height: 10vh;
   min-height: 65px;
   padding: 0.4rem 0rem;
