@@ -1,9 +1,9 @@
 //selector for all of the cells images
 var pods = document.querySelectorAll(".logo");
+
 //podcast cells containing all of the info and such
 var cells = document.querySelectorAll(".cell");
 var cellRay = Array.from(cells).reverse();
-
 //audio that is playing on the page
 var aud = document.getElementById("aud");
 //the audio bar and all of its contents
@@ -48,137 +48,150 @@ var prevVol = 1.0;
 var preVolSymbol = "<ion-icon name='volume-high-outline'></ion-icon>";
 //var for the length of the title what is cut off in the audio bar
 var titleOffset = 0;
+//search bar
+var searchVal = document.getElementById("search");
 
-//create the event listeners for the cells functionality on hover and click
-cells.forEach(cell => {
-  //settimeout runs only once
-  //setTimeout(showDuration(pod), 1000);
-  //timePastAndLeft(pod);
+//
+//Funciton for applying all of the event listeners to all of the cells
+//
+function cellFunctions(){
 
-  var inner = cell.childNodes[5];
+  //podcast cells containing all of the info and such
+  cells = document.querySelectorAll(".cell");
+  cellRay = Array.from(cells).reverse();
+  //create the event listeners for the cells functionality on hover and click
+  cells.forEach(cell => {
+    //settimeout runs only once
+    //setTimeout(showDuration(pod), 1000);
+    //timePastAndLeft(pod);
 
-  //display a darker cell and the play or pause button depending on the audio state
-  inner.addEventListener("mouseenter", e => {
+    var inner = cell.childNodes[5];
 
-    playOrPausedHover(inner);
+    //display a darker cell and the play or pause button depending on the audio state
+    inner.addEventListener("mouseenter", e => {
 
-  });
-  //return the cell to an unshaded state and the logo back to normal on mouse leave
-  inner.addEventListener("mouseleave", e=> {
+      playOrPausedHover(inner);
 
-    if(!inner.classList.contains("coggle"))
-    {
+    });
+    //return the cell to an unshaded state and the logo back to normal on mouse leave
+    inner.addEventListener("mouseleave", e=> {
 
-      inner.childNodes[1].src = "images/small.png";
-
-    }
-
-  });
-  //another way to do this could have been getting the target click on
-  //which would be the innercell and getting / setting everything from
-  //there... maybe in the future
-  inner.addEventListener("click", e=> {
-
-      curCell = inner;
-
-      //if the clicked on cell is not the current cell that is playing
-      if(!aud.src.includes(inner.childNodes[3].innerHTML))
+      if(!inner.classList.contains("coggle"))
       {
-        //pause the audio if not aleady
-        if(!aud.paused)
-          aud.pause();
 
-        //remove the interval function and reset the icons for the cell and audio bar
-        finished();
-        //if a previous cell exists then the images on the cell and shading will be reset
-        if(prevCell)
+        inner.childNodes[1].src = "images/small.png";
+
+      }
+
+    });
+    //another way to do this could have been getting the target click on
+    //which would be the innercell and getting / setting everything from
+    //there... maybe in the future
+    inner.addEventListener("click", e=> {
+
+        curCell = inner;
+
+        //if the clicked on cell is not the current cell that is playing
+        if(!aud.src.includes(inner.childNodes[3].innerHTML))
         {
-            prevCell.childNodes[1].src = "images/small.png";
-            prevCell.classList.toggle("coggle");
+          //pause the audio if not aleady
+          if(!aud.paused)
+            aud.pause();
+
+          //remove the interval function and reset the icons for the cell and audio bar
+          finished();
+          //if a previous cell exists then the images on the cell and shading will be reset
+          if(prevCell)
+          {
+              prevCell.childNodes[1].src = "images/small.png";
+              prevCell.classList.toggle("coggle");
+          }
+          //change the audio bars title to the current audio selected
+          bar.childNodes[3].firstElementChild.innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
+          //get the length of the title and the title box and calculate the offset
+          titleOffset = bar.childNodes[3].firstElementChild.scrollWidth - bar.childNodes[3].offsetWidth;
+          //if the offset is negative or 0 then there is no overlap in the title box
+          if(titleOffset > 0){
+            //adding 30px to the translation, 15 for the padding on the right side and another 15 for some buffer
+            titleOffset += 30;
+            //if will only translate the offset of the title that is cut off plus what I added
+            document.documentElement.style.setProperty('--translate-width', '-'+ titleOffset +'px');
+            //console.log(titleOffset);
+
+          }else{
+            //no need for the animation to do anything when there is no overlap
+            document.documentElement.style.setProperty('--translate-width', '0px');
+
+          }
+          //add the animation if it is not already there
+          if(!bar.childNodes[3].firstElementChild.classList.contains("scroll-play")){
+
+            bar.childNodes[3].firstElementChild.classList.toggle("scroll-play");
+
+          }
+          else
+          {//if it is there then reset it so the user would always see the beginning of the title
+            //instead of it possibly being in the center of the animation
+
+            bar.childNodes[3].firstElementChild.classList.toggle("scroll-play");
+            setTimeout(function(){ bar.childNodes[3].firstElementChild.classList.toggle("scroll-play"); }, 500);
+
+          }
+
+
+          //change the audio bars source to the new audio and play
+          aud.src = inner.childNodes[3].innerHTML;
+          aud.play();
+          //once the meta data for the audio has loaded the songs duration will be displayed
+          aud.onloadedmetadata = function() {
+            range.max = Math.floor(aud.duration);
+          };
+          //toggle the cells shading to visually represent it being checked
+          inner.classList.toggle("coggle");
+          //now when the user hovers the cell the correct pause logo will show
+          inner.childNodes[1].src = "images/pause.png";
+          //same with the audio bar
+          pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
+          //set the interval function to continuously update the time past and left in the audio
+          myT = setInterval(timePastAndLeft, interV);
+
+        }//if the cell being clicked on is the current cell being played and it not paused
+        else if(aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
+        {
+          //pause the audio and clear the interval to not have it running in the background
+          aud.pause();
+          inner.childNodes[1].src = "images/play.png";
+          pBar.innerHTML = "<ion-icon name='play-circle-outline'></ion-icon>";
+          finished();
+
+        }//if the cell being clicked on is the current cell being played and is paused
+        else if(aud.src.includes(inner.childNodes[3].innerHTML) && aud.paused)
+        {
+          //continue playing the audio and restart the interval to update the time past and left
+          aud.play();
+          pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
+          inner.childNodes[1].src = "images/pause.png";
+          myT = setInterval(timePastAndLeft, interV);
+
         }
-        //change the audio bars title to the current audio selected
-        bar.childNodes[3].firstElementChild.innerHTML = inner.childNodes[5].firstElementChild.innerHTML;
-        //get the length of the title and the title box and calculate the offset
-        titleOffset = bar.childNodes[3].firstElementChild.scrollWidth - bar.childNodes[3].offsetWidth;
-        //if the offset is negative or 0 then there is no overlap in the title box
-        if(titleOffset > 0){
-          //adding 30px to the translation, 15 for the padding on the right side and another 15 for some buffer
-          titleOffset += 30;
-          //if will only translate the offset of the title that is cut off plus what I added
-          document.documentElement.style.setProperty('--translate-width', '-'+ titleOffset +'px');
-          //console.log(titleOffset);
+        //open the audio bar and volume if not already
+        if(!bar.classList.contains("reveal")){
 
-        }else{
-          //no need for the animation to do anything when there is no overlap
-          document.documentElement.style.setProperty('--translate-width', '0px');
+          bar.classList.toggle("reveal");
+          volumeBar.parentNode.classList.toggle("reveal");
+          bur.classList.toggle("ex");
 
         }
-        //add the animation if it is not already there
-        if(!bar.childNodes[3].firstElementChild.classList.contains("scroll-play")){
-
-          bar.childNodes[3].firstElementChild.classList.toggle("scroll-play");
-
-        }
-        else
-        {//if it is there then reset it so the user would always see the beginning of the title
-          //instead of it possibly being in the center of the animation
-
-          bar.childNodes[3].firstElementChild.classList.toggle("scroll-play");
-          setTimeout(function(){ bar.childNodes[3].firstElementChild.classList.toggle("scroll-play"); }, 500);
-
-        }
+        //update the previous cell
+        prevCell = inner;
 
 
-        //change the audio bars source to the new audio and play
-        aud.src = inner.childNodes[3].innerHTML;
-        aud.play();
-        //once the meta data for the audio has loaded the songs duration will be displayed
-        aud.onloadedmetadata = function() {
-          range.max = Math.floor(aud.duration);
-        };
-        //toggle the cells shading to visually represent it being checked
-        inner.classList.toggle("coggle");
-        //now when the user hovers the cell the correct pause logo will show
-        inner.childNodes[1].src = "images/pause.png";
-        //same with the audio bar
-        pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
-        //set the interval function to continuously update the time past and left in the audio
-        myT = setInterval(timePastAndLeft, interV);
-
-      }//if the cell being clicked on is the current cell being played and it not paused
-      else if(aud.src.includes(inner.childNodes[3].innerHTML) && !aud.paused)
-      {
-        //pause the audio and clear the interval to not have it running in the background
-        aud.pause();
-        inner.childNodes[1].src = "images/play.png";
-        pBar.innerHTML = "<ion-icon name='play-circle-outline'></ion-icon>";
-        finished();
-
-      }//if the cell being clicked on is the current cell being played and is paused
-      else if(aud.src.includes(inner.childNodes[3].innerHTML) && aud.paused)
-      {
-        //continue playing the audio and restart the interval to update the time past and left
-        aud.play();
-        pBar.innerHTML = "<ion-icon name='pause-circle-outline'></ion-icon>";
-        inner.childNodes[1].src = "images/pause.png";
-        myT = setInterval(timePastAndLeft, interV);
-
-      }
-      //open the audio bar and volume if not already
-      if(!bar.classList.contains("reveal")){
-
-        bar.classList.toggle("reveal");
-        volumeBar.parentNode.classList.toggle("reveal");
-        bur.classList.toggle("ex");
-
-      }
-      //update the previous cell
-      prevCell = inner;
-
+    });
 
   });
 
-});
+}
+
 //when the slider is finished being dragged the audio will move to whichever part of the song wanted
 range.addEventListener("change", e=>{
   //only if its a valid audio format
@@ -208,6 +221,7 @@ l.addEventListener("click", e => {
 //Function to go to the next podcast from the current one
 //
 next.addEventListener("click", e => {
+
   if(curCell){
     //iterate through all of the podcasts to find the current one
     for(var i = 0; i < cellRay.length; i++){
@@ -219,10 +233,12 @@ next.addEventListener("click", e => {
         {
 
           cellRay[0].childNodes[5].click();
+          cellRay[0].childNodes[5].scrollIntoView({block: "center"});
 
         }else{
 
           cellRay[i+1].childNodes[5].click();
+          cellRay[i+1].childNodes[5].scrollIntoView({block: "center"});
 
         }
         //return from the loop once the current one is found
@@ -252,10 +268,12 @@ previous.addEventListener("click", e => {
         {
 
           cellRay[cellRay.length-1].childNodes[5].click();
+          cellRay[cellRay.length-1].childNodes[5].scrollIntoView({block: "center"});
 
         }else{
 
           cellRay[i-1].childNodes[5].click();
+          cellRay[i-1].childNodes[5].scrollIntoView({block: "center"});
 
         }
         //return from the loop once the current one is found
@@ -510,5 +528,13 @@ function skip(dir){
   }
   //update the html elements for the past and left
   timePastAndLeft();
+
+}
+//
+//Function for filtering and searching the cells for the text given
+//
+function searchList(){
+
+  //cellRay[i].style.display = 'none';
 
 }

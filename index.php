@@ -18,6 +18,70 @@
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
+  <script>
+
+    $(document).ready(function(){
+
+      var filter = $('#filter').val();
+      //console.log(filter);
+
+      $.ajax({
+
+        url: 'php/view.php',
+        type: 'POST',
+        data: {filter: filter},
+        success: function(response){
+
+          if(response == "dbf"){
+
+            document.getElementById('errorTxt').innerHTML = 'Looks like its the internet, or me though.';
+
+          }else{
+
+            $(".grid").prepend(response).show().fadeIn("slow");
+            //should handle the adding of event listeners to dynamic elements a lot better
+            //but I thought about this a little to late, maybe in the future I would add a click event listener to the
+            //body and handle it by the elements class name that was clicked on to run the functions
+            youVids();
+            cellFunctions();
+
+          }
+
+        }
+
+      });
+
+
+      $('#filter').change(function(){
+
+        filter = $('#filter').val();
+
+        //remove the current images
+        $(".grid").html('');
+
+          $.ajax({
+
+            url: 'php/view.php',
+            type: 'POST',
+            data: {filter: filter},
+            success: function(response){
+
+              $(".grid").prepend(response).hide().fadeIn(1500);
+              //should handle the adding of event listeners to dynamic elements a lot better
+              //but I thought about this a little to late, maybe in the future I would add a click event listener to the
+              //body and handle it by the elements class name that was clicked on to run the functions
+              youVids();
+              cellFunctions();
+
+            }
+
+          });
+
+        });
+
+      });
+  </script>
+
 </head>
 <body>
 
@@ -61,7 +125,7 @@
           </div>
         </div>
 
-        <select class="filter" name="fil">
+        <select id="filter" class="filter" name="fil" onchange="">
           <option value="new">Newest</option>
           <option value="old">Oldest</option>
         </select>
@@ -77,7 +141,7 @@
 
       <?php
 
-        require "php/view.php";
+        //require "php/view.php";
 
        ?>
 
