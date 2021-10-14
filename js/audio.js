@@ -2,6 +2,8 @@
 var pods = document.querySelectorAll(".logo");
 //podcast cells containing all of the info and such
 var cells = document.querySelectorAll(".cell");
+var cellRay = Array.from(cells).reverse();
+
 //audio that is playing on the page
 var aud = document.getElementById("aud");
 //the audio bar and all of its contents
@@ -11,10 +13,15 @@ var tme = document.getElementById("tme");
 //slider showing the progress of the song
 var range = document.getElementById("slid");
 
-//next podcast
+//next 30 seconds
 var r = document.getElementById("r");
-//previous podcast
+//previous 30 seconds
 var l = document.getElementById("l");
+
+//next podcast
+var next = document.querySelector(".next");
+//previous podcast
+var previous = document.querySelector(".previous");
 
 //play button for the song bar
 var pBar = document.getElementById("pBar");
@@ -29,7 +36,6 @@ var myT;
 //time interval for updating the time past and left
 var interV = 500;
 
-//
 var prevCell;
 var curCell;
 
@@ -43,7 +49,7 @@ var preVolSymbol = "<ion-icon name='volume-high-outline'></ion-icon>";
 //var for the length of the title what is cut off in the audio bar
 var titleOffset = 0;
 
-
+//create the event listeners for the cells functionality on hover and click
 cells.forEach(cell => {
   //settimeout runs only once
   //setTimeout(showDuration(pod), 1000);
@@ -51,14 +57,13 @@ cells.forEach(cell => {
 
   var inner = cell.childNodes[5];
 
-  //console.log(inner);
-
+  //display a darker cell and the play or pause button depending on the audio state
   inner.addEventListener("mouseenter", e => {
 
     playOrPausedHover(inner);
 
   });
-
+  //return the cell to an unshaded state and the logo back to normal on mouse leave
   inner.addEventListener("mouseleave", e=> {
 
     if(!inner.classList.contains("coggle"))
@@ -174,49 +179,114 @@ cells.forEach(cell => {
   });
 
 });
-
+//when the slider is finished being dragged the audio will move to whichever part of the song wanted
 range.addEventListener("change", e=>{
-
+  //only if its a valid audio format
   if(aud.src.includes(".mp3") || aud.src.includes(".m4a")){
-
+    //final update after the seeking is done
     seek();
 
   }
 
 });
-
+//skip 30 seconds ahead
 r.addEventListener("click", e => {
-
+  //only if there is a current Podcast
   if(curCell)
     skip("r");
 
 });
-
+//skip 30 seconds back
 l.addEventListener("click", e => {
-
+  //only if there is a current podcast
   if(curCell)
     skip("l");
 
 });
 
-range.addEventListener('input', e => {
+//
+//Function to go to the next podcast from the current one
+//
+next.addEventListener("click", e => {
+  if(curCell){
+    //iterate through all of the podcasts to find the current one
+    for(var i = 0; i < cellRay.length; i++){
 
+      if(aud.src.includes(cellRay[i].childNodes[5].childNodes[3].innerHTML)){
+        //once the current one is found the next in the array is the one that will
+        //have its click event triggered or loop back to the end
+        if(i+1 >= cellRay.length)
+        {
+
+          cellRay[0].childNodes[5].click();
+
+        }else{
+
+          cellRay[i+1].childNodes[5].click();
+
+        }
+        //return from the loop once the current one is found
+        return;
+
+      }
+
+    }
+
+  }
+
+});
+
+//
+//Function to go to the previous podcast from the current one
+//
+previous.addEventListener("click", e => {
+
+  if(curCell){
+
+    for(var i = 0; i < cellRay.length; i++){
+      //iterate through all of the podcasts to find the current one
+      if(aud.src.includes(cellRay[i].childNodes[5].childNodes[3].innerHTML)){
+        //once the current one is found the previous in the array is the one that will
+        //have its click event triggered or loop to the beginning
+        if(i-1 < 0)
+        {
+
+          cellRay[cellRay.length-1].childNodes[5].click();
+
+        }else{
+
+          cellRay[i-1].childNodes[5].click();
+
+        }
+        //return from the loop once the current one is found
+        return;
+
+      }
+
+    }
+
+  }
+
+});
+//update the time past and left as the audio slider is being dragged
+range.addEventListener('input', e => {
+  //always checking if there is something in the audiobar, wouldnt want
+  //the functions running with nothing there
   if(curCell)
   {
-
+    //as its being dragged they are seeking
     seeking = true;
     timePastAndLeft();
 
   }
-  //console.log("seeking");
 
 });
-
+//event listener for the volume bar as its being dragged
 volumeBar.addEventListener("input", e=>{
 
-  //console.log(volumeBar.value);
+  //update the audio volume on the value of the slider
   aud.volume = volumeBar.value;
-
+  //update the volume icon based on the value of the range slider
   if(volumeBar.value == 0.0){
 
     volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-mute-outline'></ion-icon>";
@@ -236,39 +306,25 @@ volumeBar.addEventListener("input", e=>{
       volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-high-outline'></ion-icon>";
 
     }
-
+    //keep a previous volume and icon for the bar so when the user unmutes it goes back to the right value
     prevVol = volumeBar.value;
     preVolSymbol = volumeBar.nextElementSibling.innerHTML;
 
   }
 
 });
-/*
-volumeBar.addEventListener("change", e=>{
-  //console.log(volumeBar.value);
-  aud.volume = volumeBar.value;
-  if(volumeBar.value == 0.0){
-    volumeBar.nextElementSibling.src = "images/noSound.png";
-  }else if(volumeBar.value > 0.0){
-    if(!volumeBar.nextElementSibling.src.includes("sound.png")){
-      volumeBar.nextElementSibling.src = "images/sound.png";
-    }
-    prevVol = volumeBar.value;
-  }
-});
-*/
-
+//clicking on the volume bar icon will mute the audio or unmute
 volumeBar.nextElementSibling.addEventListener("click", e=>{
 
   if(volumeBar.nextElementSibling.innerHTML.includes("volume-mute-outline"))
   {
-
+    //restore the volume to the previous setting before the mute
     volumeBar.value = prevVol;
     volumeBar.nextElementSibling.innerHTML = preVolSymbol;
     aud.volume = volumeBar.value;
 
   }else{
-
+    //mute the audio
     volumeBar.value = 0.0;
     volumeBar.nextElementSibling.innerHTML = "<ion-icon name='volume-mute-outline'></ion-icon>";
     aud.volume = volumeBar.value;
@@ -276,7 +332,7 @@ volumeBar.nextElementSibling.addEventListener("click", e=>{
   }
 
 });
-
+//event listener for the play/pause button
 pBar.addEventListener("click", e => {
 
   playOPause();
@@ -296,6 +352,9 @@ document.body.onkeydown = function(e){
     }
 }
 
+//
+//Function to play or pause the audio in the audio bar
+//
 function playOPause(){
 
   if(curCell){
@@ -325,7 +384,9 @@ function playOPause(){
   }
 
 }
-
+//
+//Function for converting seconds to h:m:s or m:s strings
+//
 function convertTime(seconds){
 
   var min = Math.floor(seconds/60);
@@ -359,9 +420,11 @@ function convertTime(seconds){
   }
 
 }
-
+//
+//Function for updating the time past and left on the audio bar
+//
 function timePastAndLeft(){
-
+  //if not seeking then the audio value will update the range value
   if(seeking == false){
 
     var p = Math.floor(aud.currentTime);
@@ -369,40 +432,28 @@ function timePastAndLeft(){
     var l = Math.floor(aud.duration - aud.currentTime);
 
     range.value = p;
-    //console.log("not seeking");
-
-    p = convertTime(p);
-
-    l = convertTime(l);
-
-    tme.firstElementChild.textContent = p;
-
-    tme.lastElementChild.textContent = l;
-
-    //console.log(range.value);
-
+    //if seeking then the left and past values will only be made
   }else if(seeking == true){
 
     var p = Math.floor(range.value);
 
     var l = Math.floor(aud.duration - p);
 
-    p = convertTime(p);
-
-    l = convertTime(l);
-
-    tme.firstElementChild.textContent = p;
-
-    tme.lastElementChild.textContent = l;
-
   }
+  //convert each of the times to the strings
+  p = convertTime(p);
+  l = convertTime(l);
+  //update the html with the new values
+  tme.firstElementChild.textContent = p;
+  tme.lastElementChild.textContent = l;
 
 }
-
+//
+//Function for displaying the proper images on over for the cells
+//
 function playOrPausedHover(pos){
   //white space is a considered a node so we must use previouselementsibling instead of previous sibling
   //which ignores such thing
-  //console.log(aud.previousElementSibling);
 
   if(!aud.paused && aud.src.includes(pos.childNodes[3].innerHTML)){
 
@@ -415,10 +466,13 @@ function playOrPausedHover(pos){
   }
 
 }
-
+//
+//Function for updating the audio time with whatever position the slider is dragged to
+//
 function seek(){
 
   aud.currentTime = range.value;
+  //upadte the time elements one last time
   timePastAndLeft();
   seeking = false;
 
@@ -438,10 +492,11 @@ function finished(){
   pBar.innerHTML = "<ion-icon name='play-circle-outline'></ion-icon>";
 
 }
-
+//
+//Function for sending the audio 30 seconds forewords or backwords
+//
 function skip(dir){
 
-  //finished();
   if(dir == "r")
   {
 
@@ -453,6 +508,7 @@ function skip(dir){
     aud.currentTime -= 30;
 
   }
-  myT = setInterval(timePastAndLeft, interV);
+  //update the html elements for the past and left
+  timePastAndLeft();
 
 }
