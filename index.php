@@ -119,7 +119,7 @@
       <div class="toptions">
 
         <div class="srchContainer">
-          <input type="text" id="search" class="srch" onkeyup="searchList()" placeholder="Search for...">
+          <input type="text" id="search" name="search" class="srch" onChange="searchList()" placeholder="Search for...">
           <div class="srchIcon">
             <ion-icon name="search"></ion-icon>
           </div>
