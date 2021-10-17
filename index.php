@@ -72,6 +72,7 @@
               //body and handle it by the elements class name that was clicked on to run the functions
               youVids();
               cellFunctions();
+              searchList();
 
             }
 

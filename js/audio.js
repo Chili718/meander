@@ -363,7 +363,7 @@ document.body.onkeyup = function(e){
         playOPause();
     }
 }
-//for preventing the space bar from scrolling down 
+//for preventing the space bar from scrolling down
 document.body.onkeydown = function(e){
     if(e.keyCode === 32 && e.target === document.body){
         e.preventDefault();
@@ -538,25 +538,45 @@ function searchList(){
   //cellRay[i].style.display = 'none';
   //cellRay[i].childNodes[5].childNodes[5].childNodes[1].innerText
   //cellRay[i].childNodes[5].childNodes[5].childNodes[5].innerText
+  var title = '';
+  var description = '';
+  var countT = 0;
+  var countD = 0;
 
-  var isSearched = searchVal.value.toUpperCase().split(" ");
+  var isSearched = searchVal.value.toUpperCase().split(" ").filter(function (x) { return x != ""; });
+
   console.log(isSearched);
-  /*
+
   for(var i = 0; i < cellRay.length; i++){
-    //var countT = 0;
-    //var countD = 0;
+    countT = 0;
+    countD = 0;
+    title = cellRay[i].childNodes[5].childNodes[5].childNodes[1].innerText.toUpperCase();
+    description = cellRay[i].childNodes[5].childNodes[5].childNodes[5].innerText.toUpperCase();
+
+    //console.log(title);
+    //console.log(description);
 
     for(var j = 0; j < isSearched.length; j++)
     {
-
       //check if word is in title
-        //if so add to countT
+      if(title.includes(isSearched[j])){
+
+        countT++;
+
+      }
       //check if word is in description
-        //if so add to countD
+      if(description.includes(isSearched[j])){
+
+        countD++;
+
+      }
 
     }
 
-    if(countT < Math.round(isSearched.length / 2) || countD < Math.round(isSearched.length / 2))
+    //console.log(countT);
+    //console.log(countD);
+
+    if(countT < Math.round(isSearched.length / 2) && countD < Math.round(isSearched.length / 2))
     {
 
       cellRay[i].style.display = 'none';
@@ -571,6 +591,4 @@ function searchList(){
 
   }
 
-  }
-  */
 }
