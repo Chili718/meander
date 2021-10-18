@@ -530,6 +530,7 @@ function skip(dir){
   timePastAndLeft();
 
 }
+
 //
 //Function for filtering and searching the cells for the text given
 //
@@ -543,9 +544,8 @@ function searchList(){
   var countT = 0;
   var countD = 0;
 
+  //array of all the words in the search bar in uppercase
   var isSearched = searchVal.value.toUpperCase().split(" ").filter(function (x) { return x != ""; });
-
-  console.log(isSearched);
 
   for(var i = 0; i < cellRay.length; i++){
     countT = 0;
@@ -553,9 +553,7 @@ function searchList(){
     title = cellRay[i].childNodes[5].childNodes[5].childNodes[1].innerText.toUpperCase();
     description = cellRay[i].childNodes[5].childNodes[5].childNodes[5].innerText.toUpperCase();
 
-    //console.log(title);
-    //console.log(description);
-
+    //count the number of times the words are found in the title and description
     for(var j = 0; j < isSearched.length; j++)
     {
       //check if word is in title
@@ -573,9 +571,8 @@ function searchList(){
 
     }
 
-    //console.log(countT);
-    //console.log(countD);
-
+    //if the title or description contains half or more of the letters in either then the cell will remain seen
+    //if not the title will be hidden
     if(countT < Math.round(isSearched.length / 2) && countD < Math.round(isSearched.length / 2))
     {
 
