@@ -27,7 +27,7 @@
       //load all of the podcasts
       $.ajax({
 
-        url: 'php/view.php',
+        url: 'php/viewPods.php',
         type: 'POST',
         data: {filter: filter},
         success: function(response){
@@ -61,7 +61,7 @@
 
           $.ajax({
 
-            url: 'php/view.php',
+            url: 'php/viewPods.php',
             type: 'POST',
             data: {filter: filter},
             success: function(response){
@@ -147,12 +147,6 @@
 
 
     <div class="grid">
-
-      <?php
-
-        //require "php/view.php";
-
-       ?>
 
     </div>
 
